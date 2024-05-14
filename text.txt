@@ -7,3 +7,6 @@ npm install @mui/material @emotion/react @emotion/styled
 
 //install sass
 npm install sass
+
+//install packet axios
+npm i --save axios
