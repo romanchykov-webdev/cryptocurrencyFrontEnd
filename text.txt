@@ -10,3 +10,10 @@ npm install sass
 
 //install packet axios
 npm i --save axios
+
+
+//install react-redux
+npm i --save react-redux
+//install  @reduxjs/toolkit
+npm install @reduxjs/toolkit
+
