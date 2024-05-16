@@ -1,3 +1,19 @@
 npx create-react-app frontend --template typescript
 
 npm i react-router-dom@6  // установка именно 6 версии react-router-dom
+
+// install material ui
+npm install @mui/material @emotion/react @emotion/styled
+
+//install sass
+npm install sass
+
+//install packet axios
+npm i --save axios
+
+
+//install react-redux
+npm i --save react-redux
+//install  @reduxjs/toolkit
+npm install @reduxjs/toolkit
+
