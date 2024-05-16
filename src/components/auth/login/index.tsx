@@ -4,7 +4,7 @@ import {IPropsLogin} from "../../../common/types/auth";
 
 const LoginPage: React.FC<IPropsLogin> = (props: IPropsLogin): JSX.Element => {
 
-    const {setEmail, setPassword} = props
+    const {setEmail, setPassword, navigate} = props
 
 
     return (
@@ -36,7 +36,10 @@ const LoginPage: React.FC<IPropsLogin> = (props: IPropsLogin): JSX.Element => {
                         }}
             >
                 У вас нет аккаунт?
-                <span className='incitingText'>Регистрация</span>
+                <span
+                    className='incitingText'
+                    onClick={() => navigate('/register')}
+                >Регистрация</span>
             </Typography>
         </>
     );

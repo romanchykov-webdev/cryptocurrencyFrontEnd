@@ -7,6 +7,7 @@ import {Box} from "@mui/material";
 import {instance} from "../../utils/exios";
 import {useAppDispatch} from "../../utils/hook";
 import {login} from "../../store/slice/auth";
+import {AppErrors} from "../../common/errors";
 
 const AuthRootComponents: React.FC = (): JSX.Element => {
     const [firstName, setFirstName] = useState('')
@@ -57,11 +58,12 @@ const AuthRootComponents: React.FC = (): JSX.Element => {
                     // console.log(userData)
 
                 } catch (error) {
+
                     console.log(error)
                     return error
                 }
             } else {
-                throw new Error('У вас не совпадают пароли')
+                throw new Error(AppErrors.PasswordDoNoMatch)
             }
         }
 
@@ -82,15 +84,22 @@ const AuthRootComponents: React.FC = (): JSX.Element => {
                     borderRadius={5}
                     boxShadow={'5px 5px 10px #ccc'}
                 >
-                    {location.pathname === '/login' ?
-                        <LoginPage setEmail={setEmail} setPassword={setPassword}/> : location.pathname === '/register' ?
+                    {location.pathname === '/login'
+                        ? <LoginPage
+                            setEmail={setEmail}
+                            setPassword={setPassword}
+                            navigate={navigate}
+                        />
+                        : location.pathname === '/register' ?
                             <RegisterPage
                                 setEmail={setEmail}
                                 setPassword={setPassword}
                                 setFirstName={setFirstName}
                                 setUserName={setUserName}
                                 setRepeatPassword={setRepeatPassword}
-                            /> : null}
+                                navigate={navigate}
+                            />
+                            : null}
                 </Box>
             </form>
         </div>

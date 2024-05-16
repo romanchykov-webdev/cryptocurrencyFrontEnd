@@ -3,7 +3,7 @@ import {Button, TextField, Typography} from "@mui/material";
 import {IPropsRegistration} from "../../../common/types/auth";
 
 const RegisterPage: React.FC<IPropsRegistration> = (props: IPropsRegistration): JSX.Element => {
-    const {setEmail, setPassword, setFirstName, setUserName, setRepeatPassword} = props
+    const {setEmail, setPassword, setFirstName, setUserName, setRepeatPassword, navigate} = props
 
     return (
         <>
@@ -50,7 +50,10 @@ const RegisterPage: React.FC<IPropsRegistration> = (props: IPropsRegistration): 
                         }}
             >
                 У вас есть аккаунта?
-                <span className='incitingText'>Авторизация</span>
+                <span
+                    className='incitingText'
+                    onClick={() => navigate('/login')}
+                >Авторизация</span>
             </Typography>
         </>
     );
