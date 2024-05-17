@@ -1,15 +1,18 @@
-.root{
+.root {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100vw;
   height: 100vh;
-  .form{
+
+  .form {
     width: 80%;
-    .incitingText{
+    padding: 40px;
+
+    .incitingText {
       color: #1900D5;
       margin-left: 5px;
-      cursor:pointer;
+      cursor: pointer;
     }
   }
 }
