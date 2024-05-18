@@ -8,9 +8,13 @@ import AuthRootComponents from './components/auth';
 import {ColorModeContext, useMode} from './theme'
 import {CssBaseline, ThemeProvider} from '@mui/material'
 import LayoutComponent from "./components/layout";
+import WatcListComponent from "./components/watchlist/WatcListComponent";
+import NewsComponent from "./components/news/NewsComponent";
+import SettingsComponent from "./components/settings/SettingsComponent";
 
 function App() {
     const [theme, colorMode] = useMode()
+
 
     return (
         <ColorModeContext.Provider value={colorMode}>
@@ -22,10 +26,13 @@ function App() {
                             {/*solo registration user*/}
                             <Route element={<PrivateRoute/>}>
                                 <Route path="/" element={<Home/>}/>
+                                <Route path="/watchlist" element={<WatcListComponent/>}/>
+                                <Route path="/news" element={<NewsComponent/>}/>
+                                <Route path="/settings" element={<SettingsComponent/>}/>
                             </Route>
                             {/*all users open routing*/}
-                            <Route path="login" element={<AuthRootComponents/>}/>
-                            <Route path="register" element={<AuthRootComponents/>}/>
+                            <Route path="/login" element={<AuthRootComponents/>}/>
+                            <Route path="/register" element={<AuthRootComponents/>}/>
                         </Routes>
                     </div>
                 </LayoutComponent>

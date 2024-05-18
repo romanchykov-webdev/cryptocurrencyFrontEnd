@@ -1,12 +1,12 @@
 import {createContext, useState, useMemo} from 'react'
-import {createTheme} from "@mui/material";
-
+import {createTheme} from '@mui/material'
 
 export const tokens = (mode: string) => ({
     ...(mode === 'dark'
         ? {
             primary: {
                 DEFAULT: '#000000',
+                // DEFAULT: '#DC143C',
                 100: '#000000',
                 200: '#000000',
                 300: '#000000',
@@ -51,7 +51,8 @@ export const tokens = (mode: string) => ({
             },
             primary: {
                 DEFAULT: '#FFFFFF',
-                600: '#F7F7F7',
+                // DEFAULT: '#DC143C',
+                500: '#F7F7F7',
             },
             secondary: {
                 DEFAULT: '#7C7C7C',
