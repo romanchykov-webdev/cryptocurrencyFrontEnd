@@ -1,16 +1,15 @@
 import React, {useState} from 'react';
-import {ILayout} from "../../common/types/layout";
 import TopBarComponent from "../top-bar";
-import {useLocation} from "react-router-dom";
+import {Outlet, useLocation} from "react-router-dom";
 import {Box, useMediaQuery} from "@mui/material";
 import SidebarComponent from "../sidebar/SidebarComponent";
 import {useStyles} from "./style"
 
-const LayoutComponent = ({children}: ILayout) => {
+const LayoutComponent = () => {
     const location = useLocation()
     const isNonMobile = useMediaQuery('(min-width:600px)')
     //burger menu
-    const [isOpen, setIsOpen] = useState(true)
+    const [isOpen, setIsOpen] = useState(false)
 
     const classes = useStyles()
 
@@ -18,7 +17,7 @@ const LayoutComponent = ({children}: ILayout) => {
         location.pathname === '/login' || location.pathname === '/register'
             ? (
                 <>
-                    {children}
+                    <Outlet/>
                 </>
             )
             : (
@@ -31,13 +30,16 @@ const LayoutComponent = ({children}: ILayout) => {
                     >
                         <SidebarComponent
                             isNonMobile={isNonMobile}
-                            drawerWidth='250'
+                            drawerWidth='250px'
                             isOpen={isOpen}
                             setIsOpen={setIsOpen}
                         />
                         <Box className={classes.mainSection}>
-                            <TopBarComponent/>
-                            {children}
+                            <TopBarComponent
+                                isOpen={isOpen}
+                                setIsOpen={setIsOpen}
+                            />
+                            <Outlet/>
                         </Box>
                     </Box>
 
