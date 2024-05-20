@@ -1,28 +1,44 @@
 import React from 'react';
 import Home from './components/home';
-import { Route, Routes } from 'react-router-dom';
+import {Route, Routes} from 'react-router-dom';
 import PrivateRoute from './utils/router/privateRoute';
 import AuthRootComponents from './components/auth';
 
+//import theme mode
+import {ColorModeContext, useMode} from './theme'
+import {CssBaseline, ThemeProvider} from '@mui/material'
+import LayoutComponent from "./components/layout";
+import WatcListComponent from "./components/watchlist/WatcListComponent";
+import NewsComponent from "./components/news/NewsComponent";
+import SettingsComponent from "./components/settings/SettingsComponent";
+
 function App() {
-  return (
-    <div className="App">
+    const [theme, colorMode] = useMode()
 
 
-      <Routes>
-
-        {/*solo registration user*/}
-        <Route element={<PrivateRoute />} >
-          <Route path="/" element={<Home />} />
-        </Route>
-
-        {/*all users open routing*/}
-        <Route path="login" element={<AuthRootComponents />} />
-        <Route path="register" element={<AuthRootComponents />} />
-
-      </Routes>
-    </div>
-  );
+    return (
+        <ColorModeContext.Provider value={colorMode}>
+            <ThemeProvider theme={theme}>
+                <CssBaseline/>
+                <LayoutComponent>
+                    <div className="App">
+                        <Routes>
+                            {/*solo registration user*/}
+                            <Route element={<PrivateRoute/>}>
+                                <Route path="/" element={<Home/>}/>
+                                <Route path="/watchlist" element={<WatcListComponent/>}/>
+                                <Route path="/news" element={<NewsComponent/>}/>
+                                <Route path="/settings" element={<SettingsComponent/>}/>
+                            </Route>
+                            {/*all users open routing*/}
+                            <Route path="/login" element={<AuthRootComponents/>}/>
+                            <Route path="/register" element={<AuthRootComponents/>}/>
+                        </Routes>
+                    </div>
+                </LayoutComponent>
+            </ThemeProvider>
+        </ColorModeContext.Provider>
+    );
 }
 
 export default App;
