@@ -7,8 +7,8 @@ export const useStyles = makeStyles({
     },
     mainSection: {
         display: "flex",
-        // flexGrow: 1,
-        width: '90%',
+        flexGrow: 1,
+        // width: '90%',
         flexDirection: 'column',
         justifyContent: 'center'
     }

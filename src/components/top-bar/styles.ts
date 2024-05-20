@@ -6,13 +6,19 @@ export const useStyles = makeStyles((theme: Theme) => {
             const colors = tokens(theme.palette.mode)
             return {
                 root: {
-                    display: 'flex',
+                    position: 'static',
+                    background: `${colors.primary.DEFAULT} !important`,
+                    borderBottom: `1px solid ${colors.borderColor}`,
+                    boxShadow: 'none !important'
+                },
+                menuIcon: {
+                    cursor: 'pointer',
+                    marginRight: '10px',
+
+                },
+                toolbar: {
                     justifyContent: 'space-between',
-                    alignItems: 'center',
-                    padding: '32px 24px',
-                    backgroundColor: colors.primary.DEFAULT,
-                    maxHeight: '95px',
-                    borderBottom: `1px solid ${colors.borderColor}`
+                    padding: '25px 45px',
                 },
                 iconBlock: {
                     paddingRight: '37px',
@@ -33,7 +39,8 @@ export const useStyles = makeStyles((theme: Theme) => {
                     display: 'flex',
                     backgroundColor: `${colors.primary[600]}`,
                     borderRadius: '8px',
-                    marginLeft: '28px'
+                    marginLeft: '28px',
+                    maxHeight: '45px',
                 },
                 searchInput: {
                     padding: '18px 12px'

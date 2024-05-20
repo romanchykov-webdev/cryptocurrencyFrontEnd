@@ -7,10 +7,10 @@ import AuthRootComponents from './components/auth';
 //import theme mode
 import {ColorModeContext, useMode} from './theme'
 import {CssBaseline, ThemeProvider} from '@mui/material'
-import LayoutComponent from "./components/layout";
-import WatcListComponent from "./components/watchlist/WatcListComponent";
+import WatchListComponent from "./components/watchlist/WatchListComponent";
 import NewsComponent from "./components/news/NewsComponent";
 import SettingsComponent from "./components/settings/SettingsComponent";
+import LayoutComponent from "./components/layout";
 
 function App() {
     const [theme, colorMode] = useMode()
@@ -20,22 +20,22 @@ function App() {
         <ColorModeContext.Provider value={colorMode}>
             <ThemeProvider theme={theme}>
                 <CssBaseline/>
-                <LayoutComponent>
-                    <div className="App">
-                        <Routes>
+                <div className="App">
+                    <Routes>
+                        <Route element={<LayoutComponent/>}>
                             {/*solo registration user*/}
                             <Route element={<PrivateRoute/>}>
                                 <Route path="/" element={<Home/>}/>
-                                <Route path="/watchlist" element={<WatcListComponent/>}/>
+                                <Route path="/watchlist" element={<WatchListComponent/>}/>
                                 <Route path="/news" element={<NewsComponent/>}/>
                                 <Route path="/settings" element={<SettingsComponent/>}/>
                             </Route>
                             {/*all users open routing*/}
                             <Route path="/login" element={<AuthRootComponents/>}/>
                             <Route path="/register" element={<AuthRootComponents/>}/>
-                        </Routes>
-                    </div>
-                </LayoutComponent>
+                        </Route>
+                    </Routes>
+                </div>
             </ThemeProvider>
         </ColorModeContext.Provider>
     );
