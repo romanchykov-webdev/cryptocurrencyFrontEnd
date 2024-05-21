@@ -23,3 +23,9 @@ npm install @mui/icons-material
 
 //install libs @mui/styles
 npm --force install @mui/styles
+
+//install libs react hook form
+npm install react-hook-form
+npm install react-hook-form --legacy-peer-deps
+
+

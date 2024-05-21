@@ -8,6 +8,7 @@ import {instance} from "../../utils/exios";
 import {useAppDispatch} from "../../utils/hook";
 import {login} from "../../store/slice/auth";
 import {AppErrors} from "../../common/errors";
+import {useForm} from "react-hook-form";
 
 const AuthRootComponents: React.FC = (): JSX.Element => {
     const [firstName, setFirstName] = useState('')
@@ -23,13 +24,22 @@ const AuthRootComponents: React.FC = (): JSX.Element => {
 
     const navigate = useNavigate()
 
-    const handleSubmit = async (e: { preventDefault: () => void; }) => {
-        e.preventDefault()
+    const {
+        register,
+        formState: {
+            errors
+        },
+        handleSubmit
+    } = useForm()
+
+    console.log('errors', errors)
+    const handleSubmitForm = async (data: any) => {
+        console.log('data', data)
         if (location.pathname === '/login') {
             try {
                 const userData = {
-                    email: email,
-                    password: password
+                    email: data.email,
+                    password: data.password
                 }
                 const user = await instance.post('auth/login', userData)
                 await dispatch(login(user.data))
@@ -72,7 +82,7 @@ const AuthRootComponents: React.FC = (): JSX.Element => {
 
     return (
         <div className="root">
-            <form className="form" onSubmit={handleSubmit}>
+            <form className="form" onSubmit={handleSubmit(handleSubmitForm)}>
                 <Box
                     display='flex'
                     justifyContent='center'
@@ -89,6 +99,8 @@ const AuthRootComponents: React.FC = (): JSX.Element => {
                             setEmail={setEmail}
                             setPassword={setPassword}
                             navigate={navigate}
+                            register={register}
+                            errors={errors}
                         />
                         : location.pathname === '/register' ?
                             <RegisterPage

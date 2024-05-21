@@ -4,7 +4,7 @@ import {IPropsLogin} from "../../../common/types/auth";
 
 const LoginPage: React.FC<IPropsLogin> = (props: IPropsLogin): JSX.Element => {
 
-    const {setEmail, setPassword, navigate} = props
+    const {setEmail, setPassword, navigate, register, errors} = props
 
 
     return (
@@ -16,12 +16,31 @@ const LoginPage: React.FC<IPropsLogin> = (props: IPropsLogin): JSX.Element => {
                 Введите ваш login и Password
             </Typography>
 
-            <TextField fullWidth={true} margin='normal' label="Email" variant="outlined"
-                       onChange={(e) => setEmail(e.target.value)}
-                       placeholder='Введите ваш Email'/>
-            <TextField fullWidth={true} type='password' margin='normal' label="Password" variant="outlined"
-                       onChange={(e) => setPassword(e.target.value)}
-                       placeholder='Введите ваш Password'/>
+            <TextField
+                error={!!errors.email}
+                helperText={errors.email ? `${errors.email.message}` : ''}
+                fullWidth={true} margin='normal' label="Email" variant="outlined"
+                {...register('email', {
+                    required: 'Это обязательное поле',
+                    pattern: {
+                        value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+                        message: 'Неверный формат email'
+                    }
+                })
+                }
+                // onChange={(e) => setEmail(e.target.value)}
+                placeholder='Введите ваш Email'/>
+            <TextField
+                error={!!errors.password}
+                helperText={errors.password ? `${errors.password.message}` : ''}
+                fullWidth={true} type='password' margin='normal' label="Password" variant="outlined"
+                {...register('password', {
+                    required: 'Это обязательное поле',
+                    minLength: 3
+                })
+                }
+                // onChange={(e) => setPassword(e.target.value)}
+                placeholder='Введите ваш Password'/>
             <Button
                 type="submit"
                 sx={{
