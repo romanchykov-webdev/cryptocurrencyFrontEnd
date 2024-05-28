@@ -1,25 +1,32 @@
 import {FieldErrors, FieldValues, UseFormRegister,} from "react-hook-form";
 
 //description interface login page
-export interface IPropsLogin<
-    TFieldValues extends FieldValues = FieldValues,
-    TContext = any
-> {
-    setEmail: (value: string) => void;
-    setPassword: (value: string) => void;
+interface IFormInputs {
+    email: string;
+    password: string;
+}
+export interface IPropsLogin<TFieldValues extends FieldValues = IFormInputs>{
+    // setEmail: (value: string) => void;
+    // setPassword: (value: string) => void;
     navigate: (to: string) => void;
     register: UseFormRegister<TFieldValues>;
     errors: FieldErrors<TFieldValues>
 }
 
 //description interface registration page
-export interface IPropsRegistration {
-    setEmail: (value: string) => void;
-    setPassword: (value: string) => void;
-    setFirstName: (value: string) => void;
-    setUserName: (value: string) => void;
-    setRepeatPassword: (value: string) => void;
+    //description interface login page
+ export interface IFormInputsRegister {
+    firstName: string;
+    userName: string;
+    email: string;
+    password: string;
+    confirmPassword: string;
+}
+
+export interface IPropsRegistration<TFieldValues extends FieldValues = IFormInputsRegister> {
     navigate: (to: string) => void;
+    register: UseFormRegister<TFieldValues>;
+    errors: FieldErrors<TFieldValues>
 }
 
 //description interface state=> user in slice auth

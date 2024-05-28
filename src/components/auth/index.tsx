@@ -8,15 +8,22 @@ import {instance} from "../../utils/exios";
 import {useAppDispatch} from "../../utils/hook";
 import {login} from "../../store/slice/auth";
 import {AppErrors} from "../../common/errors";
-import {useForm} from "react-hook-form";
+import {useForm, UseFormRegister} from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup"
+import {LoginSchema, RegisterSchema} from "../../utils/yup";
+import {IFormInputsRegister} from '../../common/types/auth'
+
+
+
+
 
 const AuthRootComponents: React.FC = (): JSX.Element => {
-    const [firstName, setFirstName] = useState('')
-    const [userName, setUserName] = useState('')
-    const [repeatPassword, setRepeatPassword] = useState('')
+    // const [firstName, setFirstName] = useState('')
+    // const [userName, setUserName] = useState('')
+    // const [repeatPassword, setRepeatPassword] = useState('')
 
-    const [password, setPassword] = useState('')
-    const [email, setEmail] = useState('')
+    // const [password, setPassword] = useState('')
+    // const [email, setEmail] = useState('')
 
     const location = useLocation()
 
@@ -30,10 +37,15 @@ const AuthRootComponents: React.FC = (): JSX.Element => {
             errors
         },
         handleSubmit
-    } = useForm()
+    } = useForm({
+        resolver: yupResolver(
+            location.pathname === '/login' ? LoginSchema : RegisterSchema,
+        )
+    })
 
     console.log('errors', errors)
     const handleSubmitForm = async (data: any) => {
+
         console.log('data', data)
         if (location.pathname === '/login') {
             try {
@@ -47,18 +59,23 @@ const AuthRootComponents: React.FC = (): JSX.Element => {
 
                 // console.log(user.data)
                 // console.log(userData)
-            } catch (error) {
-                return error
+            } catch (e) {
+                const error = new Error(AppErrors.ErrorPassword);
+                console.log(error);
+                return error;
+                // return error
             }
         } else if (location.pathname === '/register') {
-            if (password === repeatPassword) {
+            console.log(data)
+            // if (password === repeatPassword) {
+            if (data.password === data.confirmPassword) {
                 try {
                     const userData = {
-                        firstName: firstName,
-                        userName: userName,
-                        email: email,
-                        password: password,
-                        // repeatPassword: repeatPassword,
+                        firstName: data.firstName,
+                        userName: data.userName,
+                        email: data.email,
+                        password: data.password,
+                        // confirmPassword: confirmPassword,
                     }
 
                     const newUser = await instance.post('auth/register', userData)
@@ -73,7 +90,10 @@ const AuthRootComponents: React.FC = (): JSX.Element => {
                     return error
                 }
             } else {
-                throw new Error(AppErrors.PasswordDoNoMatch)
+                const error = new Error(AppErrors.PasswordDoNoMatch);
+                console.log(error);
+                return error;
+                // throw new Error(AppErrors.PasswordDoNoMatch)
             }
         }
 
@@ -96,19 +116,16 @@ const AuthRootComponents: React.FC = (): JSX.Element => {
                 >
                     {location.pathname === '/login'
                         ? <LoginPage
-                            setEmail={setEmail}
-                            setPassword={setPassword}
+                            // setEmail={setEmail}
+                            // setPassword={setPassword}
                             navigate={navigate}
                             register={register}
                             errors={errors}
                         />
                         : location.pathname === '/register' ?
                             <RegisterPage
-                                setEmail={setEmail}
-                                setPassword={setPassword}
-                                setFirstName={setFirstName}
-                                setUserName={setUserName}
-                                setRepeatPassword={setRepeatPassword}
+                                register={register as unknown as UseFormRegister<IFormInputsRegister>}
+                                errors={errors}
                                 navigate={navigate}
                             />
                             : null}

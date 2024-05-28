@@ -4,7 +4,13 @@ import {IPropsLogin} from "../../../common/types/auth";
 
 const LoginPage: React.FC<IPropsLogin> = (props: IPropsLogin): JSX.Element => {
 
-    const {setEmail, setPassword, navigate, register, errors} = props
+    const {
+        // setEmail,
+        // setPassword,
+        navigate,
+        register,
+        errors
+    } = props
 
 
     return (
@@ -20,25 +26,14 @@ const LoginPage: React.FC<IPropsLogin> = (props: IPropsLogin): JSX.Element => {
                 error={!!errors.email}
                 helperText={errors.email ? `${errors.email.message}` : ''}
                 fullWidth={true} margin='normal' label="Email" variant="outlined"
-                {...register('email', {
-                    required: 'Это обязательное поле',
-                    pattern: {
-                        value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-                        message: 'Неверный формат email'
-                    }
-                })
-                }
+                {...register('email')}
                 // onChange={(e) => setEmail(e.target.value)}
                 placeholder='Введите ваш Email'/>
             <TextField
                 error={!!errors.password}
                 helperText={errors.password ? `${errors.password.message}` : ''}
                 fullWidth={true} type='password' margin='normal' label="Password" variant="outlined"
-                {...register('password', {
-                    required: 'Это обязательное поле',
-                    minLength: 3
-                })
-                }
+                {...register('password')}
                 // onChange={(e) => setPassword(e.target.value)}
                 placeholder='Введите ваш Password'/>
             <Button
