@@ -1,6 +1,8 @@
 import React from 'react';
 import {Button, TextField, Typography} from "@mui/material";
 import {IPropsRegistration} from "../../../common/types/auth";
+import {useStyles} from "./style";
+import AppButton from "../../app-button/appButton";
 
 const RegisterPage: React.FC<IPropsRegistration> = (props: IPropsRegistration): JSX.Element => {
     const {
@@ -8,6 +10,8 @@ const RegisterPage: React.FC<IPropsRegistration> = (props: IPropsRegistration): 
         register,
         errors
     } = props
+
+    const classes = useStyles()
 
     return (
         <>
@@ -72,7 +76,7 @@ const RegisterPage: React.FC<IPropsRegistration> = (props: IPropsRegistration): 
             />
 
 
-            <Button
+            <AppButton
                 sx={{
                     fontFamily: 'Poppins',
                     marginTop: 2,
@@ -80,7 +84,9 @@ const RegisterPage: React.FC<IPropsRegistration> = (props: IPropsRegistration): 
                     marginBottom: 2
                 }}
                 type="submit"
-                variant="contained">Регистрация</Button>
+                variant="contained">
+                Регистрация
+            </AppButton>
             <Typography variant="body1" fontFamily='Poppins'
                         sx={{
                             fontFamily: 'Poppins'
@@ -88,7 +94,7 @@ const RegisterPage: React.FC<IPropsRegistration> = (props: IPropsRegistration): 
             >
                 У вас есть аккаунта?
                 <span
-                    className='incitingText'
+                    className={classes.incitingText}
                     onClick={() => navigate('/login')}
                 >Авторизация</span>
             </Typography>

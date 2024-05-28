@@ -1,5 +1,5 @@
 import React from 'react';
-import Home from './components/home';
+import Home from './pages/home';
 import {Route, Routes} from 'react-router-dom';
 import PrivateRoute from './utils/router/privateRoute';
 import AuthRootComponents from './components/auth';
@@ -7,9 +7,9 @@ import AuthRootComponents from './components/auth';
 //import theme mode
 import {ColorModeContext, useMode} from './theme'
 import {CssBaseline, ThemeProvider} from '@mui/material'
-import WatchListComponent from "./components/watchlist/WatchListComponent";
-import NewsComponent from "./components/news/NewsComponent";
-import SettingsComponent from "./components/settings/SettingsComponent";
+import WatchListComponent from "./pages/watchlist/WatchListComponent";
+import NewsComponent from "./pages/news/NewsComponent";
+import SettingsComponent from "./pages/settings/SettingsComponent";
 import LayoutComponent from "./components/layout";
 
 function App() {

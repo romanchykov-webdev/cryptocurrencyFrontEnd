@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import {useLocation, useNavigate} from 'react-router-dom';
 import LoginPage from './login';
 import RegisterPage from './register';
-import './style.scss'
 import {Box} from "@mui/material";
 import {instance} from "../../utils/exios";
 import {useAppDispatch} from "../../utils/hook";
@@ -12,6 +11,7 @@ import {useForm, UseFormRegister} from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup"
 import {LoginSchema, RegisterSchema} from "../../utils/yup";
 import {IFormInputsRegister} from '../../common/types/auth'
+import {useStyles} from "./style";
 
 
 
@@ -24,6 +24,8 @@ const AuthRootComponents: React.FC = (): JSX.Element => {
 
     // const [password, setPassword] = useState('')
     // const [email, setEmail] = useState('')
+
+    const classes=useStyles()
 
     const location = useLocation()
 
@@ -101,8 +103,8 @@ const AuthRootComponents: React.FC = (): JSX.Element => {
     }
 
     return (
-        <div className="root">
-            <form className="form" onSubmit={handleSubmit(handleSubmitForm)}>
+        <div className={classes.root}>
+            <form className={classes.form} onSubmit={handleSubmit(handleSubmitForm)}>
                 <Box
                     display='flex'
                     justifyContent='center'
@@ -112,7 +114,7 @@ const AuthRootComponents: React.FC = (): JSX.Element => {
                     margin='auto'
                     padding={5}
                     borderRadius={5}
-                    boxShadow={'5px 5px 10px #ccc'}
+                    boxShadow={'-3px -2px 20px #202020'}
                 >
                     {location.pathname === '/login'
                         ? <LoginPage

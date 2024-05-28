@@ -1,11 +1,11 @@
-import React, {useState} from 'react';
+import React, {FC, useState} from 'react';
 import TopBarComponent from "../top-bar";
 import {Outlet, useLocation} from "react-router-dom";
 import {Box, useMediaQuery} from "@mui/material";
 import SidebarComponent from "../sidebar/SidebarComponent";
 import {useStyles} from "./style"
 
-const LayoutComponent = () => {
+const LayoutComponent: FC = (): JSX.Element => {
     const location = useLocation()
     const isNonMobile = useMediaQuery('(min-width:600px)')
     //burger menu

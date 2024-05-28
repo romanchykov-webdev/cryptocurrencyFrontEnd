@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {FC, useContext} from 'react';
 import {AppBar, Box, Grid, IconButton, InputBase, Toolbar, Typography, useTheme} from "@mui/material";
 import {useAppSelector} from "../../utils/hook";
 import {ColorModeContext} from "../../theme";
@@ -11,9 +11,10 @@ import {NotificationsNone, Search, DarkMode, LightMode, MenuOutlined} from "@mui
 
 import {useStyles} from "./styles";
 import FlexBetween from "../flex-between/FlexBetween";
+import {ITopBarProps} from "../../common/types/topbar";
 
 
-const TopBarComponent = (props: any) => {
+const TopBarComponent: FC<ITopBarProps> = (props: ITopBarProps): JSX.Element => {
     const {isOpen, setIsOpen} = props
     const user = useAppSelector((state) => state.auth.user)
     // console.log(user)

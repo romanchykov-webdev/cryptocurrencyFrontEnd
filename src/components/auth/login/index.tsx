@@ -1,9 +1,12 @@
 import React, {Fragment} from 'react';
 import {Button, TextField, Typography} from "@mui/material";
 import {IPropsLogin} from "../../../common/types/auth";
+import AppButton from "../../app-button/appButton";
+import {useStyles} from "./style";
 
 const LoginPage: React.FC<IPropsLogin> = (props: IPropsLogin): JSX.Element => {
 
+    const classes=useStyles()
     const {
         // setEmail,
         // setPassword,
@@ -15,10 +18,10 @@ const LoginPage: React.FC<IPropsLogin> = (props: IPropsLogin): JSX.Element => {
 
     return (
         <>
-            <Typography variant="h2" fontFamily='Poppins' textAlign='center'>
+            <Typography variant="h2"  textAlign='center' fontSize={32}>
                 Авторизация
             </Typography>
-            <Typography variant="body1" marginBottom={3} fontFamily='Poppins' textAlign='center'>
+            <Typography variant="body1" marginBottom={3} textAlign='center'>
                 Введите ваш login и Password
             </Typography>
 
@@ -36,22 +39,21 @@ const LoginPage: React.FC<IPropsLogin> = (props: IPropsLogin): JSX.Element => {
                 {...register('password')}
                 // onChange={(e) => setPassword(e.target.value)}
                 placeholder='Введите ваш Password'/>
-            <Button
+            <AppButton
                 type="submit"
                 sx={{
-                    fontFamily: 'Poppins',
+
                     marginTop: 2,
                     width: '60%',
                     marginBottom: 2
-                }} variant="contained">Войти</Button>
+                }} variant="contained">Войти
+            </AppButton>
             <Typography variant="body1" fontFamily='Poppins'
-                        sx={{
-                            fontFamily: 'Poppins'
-                        }}
+
             >
                 У вас нет аккаунт?
                 <span
-                    className='incitingText'
+                    className={classes.incitingText}
                     onClick={() => navigate('/register')}
                 >Регистрация</span>
             </Typography>
