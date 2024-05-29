@@ -2,7 +2,7 @@ import React from 'react';
 import Home from './pages/home';
 import {Route, Routes} from 'react-router-dom';
 import PrivateRoute from './utils/router/privateRoute';
-import AuthRootComponents from './components/auth';
+import AuthRootComponents from './pages/auth';
 
 //import theme mode
 import {ColorModeContext, useMode} from './theme'
