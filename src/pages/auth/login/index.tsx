@@ -1,8 +1,9 @@
 import React, {Fragment} from 'react';
-import {Button, TextField, Typography} from "@mui/material";
+import { TextField, Typography} from "@mui/material";
 import {IPropsLogin} from "../../../common/types/auth";
-import AppButton from "../../app-button/appButton";
+// import AppButton from "../../../components/app-button/appButton";
 import {useStyles} from "./style";
+import AppLoadingButton from "../../../components/loading-button/loadingButton";
 
 const LoginPage: React.FC<IPropsLogin> = (props: IPropsLogin): JSX.Element => {
 
@@ -10,6 +11,7 @@ const LoginPage: React.FC<IPropsLogin> = (props: IPropsLogin): JSX.Element => {
     const {
         // setEmail,
         // setPassword,
+        loading,
         navigate,
         register,
         errors
@@ -39,7 +41,8 @@ const LoginPage: React.FC<IPropsLogin> = (props: IPropsLogin): JSX.Element => {
                 {...register('password')}
                 // onChange={(e) => setPassword(e.target.value)}
                 placeholder='Введите ваш Password'/>
-            <AppButton
+            <AppLoadingButton
+                loading={loading}
                 type="submit"
                 sx={{
 
@@ -47,7 +50,7 @@ const LoginPage: React.FC<IPropsLogin> = (props: IPropsLogin): JSX.Element => {
                     width: '60%',
                     marginBottom: 2
                 }} variant="contained">Войти
-            </AppButton>
+            </AppLoadingButton>
             <Typography variant="body1" fontFamily='Poppins'
 
             >

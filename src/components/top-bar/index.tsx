@@ -16,20 +16,24 @@ import {ITopBarProps} from "../../common/types/topbar";
 
 const TopBarComponent: FC<ITopBarProps> = (props: ITopBarProps): JSX.Element => {
     const {isOpen, setIsOpen} = props
-    const user = useAppSelector((state) => state.auth.user)
+    // const user = useAppSelector((state) => state.auth.user)
     // console.log(user)
     // console.log(user.user.firstName)
     const theme = useTheme()
     // const colors = tokens(theme.palette.mode)
     const colorMode: any = useContext(ColorModeContext)
     const classes = useStyles()
+
+    //get firstName
+    const firstNameUser=sessionStorage.getItem("firstName")
+    //get firstName end
     return (
         <AppBar className={classes.root} position='static'>
             <Toolbar className={classes.toolbar}>
                 <FlexBetween>
                     <MenuOutlined className={classes.menuIcon} onClick={() => setIsOpen(!isOpen)}/>
                     <Typography variant='h3'>
-                        welcome serioga
+                        welcome {firstNameUser}
                     </Typography>
                 </FlexBetween>
                 <Box display='flex'>

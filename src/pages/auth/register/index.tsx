@@ -1,11 +1,13 @@
 import React from 'react';
-import {Button, TextField, Typography} from "@mui/material";
+import {TextField, Typography} from "@mui/material";
 import {IPropsRegistration} from "../../../common/types/auth";
 import {useStyles} from "./style";
-import AppButton from "../../app-button/appButton";
+// import AppButton from "../../../components/app-button/appButton";
+import AppLoadingButton from "../../../components/loading-button/loadingButton";
 
 const RegisterPage: React.FC<IPropsRegistration> = (props: IPropsRegistration): JSX.Element => {
     const {
+        loading,
         navigate,
         register,
         errors
@@ -76,9 +78,9 @@ const RegisterPage: React.FC<IPropsRegistration> = (props: IPropsRegistration): 
             />
 
 
-            <AppButton
+            <AppLoadingButton
+                loading={loading}
                 sx={{
-                    fontFamily: 'Poppins',
                     marginTop: 2,
                     width: '60%',
                     marginBottom: 2
@@ -86,7 +88,7 @@ const RegisterPage: React.FC<IPropsRegistration> = (props: IPropsRegistration): 
                 type="submit"
                 variant="contained">
                 Регистрация
-            </AppButton>
+            </AppLoadingButton>
             <Typography variant="body1" fontFamily='Poppins'
                         sx={{
                             fontFamily: 'Poppins'

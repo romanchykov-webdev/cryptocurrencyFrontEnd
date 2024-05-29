@@ -1,20 +1,18 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {useLocation, useNavigate} from 'react-router-dom';
 import LoginPage from './login';
 import RegisterPage from './register';
 import {Box} from "@mui/material";
-import {instance} from "../../utils/exios";
-import {useAppDispatch} from "../../utils/hook";
-import {login} from "../../store/slice/auth";
+// import {instance} from "../../utils/exios";
+import {useAppDispatch, useAppSelector} from "../../utils/hook";
+// import {login} from "../../store/slice/auth";
 import {AppErrors} from "../../common/errors";
 import {useForm, UseFormRegister} from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup"
+import {yupResolver} from "@hookform/resolvers/yup"
 import {LoginSchema, RegisterSchema} from "../../utils/yup";
 import {IFormInputsRegister} from '../../common/types/auth'
 import {useStyles} from "./style";
-
-
-
+import {LoginUser, RegisterUser} from "../../store/thunks/auth";
 
 
 const AuthRootComponents: React.FC = (): JSX.Element => {
@@ -25,7 +23,7 @@ const AuthRootComponents: React.FC = (): JSX.Element => {
     // const [password, setPassword] = useState('')
     // const [email, setEmail] = useState('')
 
-    const classes=useStyles()
+    const classes = useStyles()
 
     const location = useLocation()
 
@@ -45,18 +43,20 @@ const AuthRootComponents: React.FC = (): JSX.Element => {
         )
     })
 
+    const loading = useAppSelector((state) => state.auth.isLoading)
+
     console.log('errors', errors)
     const handleSubmitForm = async (data: any) => {
 
         console.log('data', data)
         if (location.pathname === '/login') {
             try {
-                const userData = {
-                    email: data.email,
-                    password: data.password
-                }
-                const user = await instance.post('auth/login', userData)
-                await dispatch(login(user.data))
+                // const userData = {
+                //     email: data.email,
+                //     password: data.password
+                // }
+                // const user = await instance.post('auth/login', userData)
+                await dispatch(LoginUser(data))
                 navigate('/') // если пользователь залогонился то переводим на homePage
 
                 // console.log(user.data)
@@ -80,9 +80,10 @@ const AuthRootComponents: React.FC = (): JSX.Element => {
                         // confirmPassword: confirmPassword,
                     }
 
-                    const newUser = await instance.post('auth/register', userData)
-                    console.log(newUser.data)
-                    await dispatch(login(newUser.data))
+                    // const newUser = await instance.post('auth/register', userData)
+                    // console.log(newUser.data)
+                    // await dispatch(login(newUser.data))
+                    await dispatch(RegisterUser(userData))
                     navigate('/')
                     // console.log(userData)
 
@@ -123,12 +124,14 @@ const AuthRootComponents: React.FC = (): JSX.Element => {
                             navigate={navigate}
                             register={register}
                             errors={errors}
+                            loading={loading}
                         />
                         : location.pathname === '/register' ?
                             <RegisterPage
                                 register={register as unknown as UseFormRegister<IFormInputsRegister>}
                                 errors={errors}
                                 navigate={navigate}
+                                loading={loading}
                             />
                             : null}
                 </Box>

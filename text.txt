@@ -36,5 +36,9 @@ npm install react-hook-form --legacy-peer-deps
 //npm install @hookform/resolvers
 npm install @hookform/resolvers --legacy-peer-deps
 
+// npm install @mui/lab  for button loader
+npm install @mui/lab --legacy-peer-deps
+
+
 
 
