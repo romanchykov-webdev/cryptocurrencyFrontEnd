@@ -1,11 +1,12 @@
 // rsc
-import React, {useCallback, useEffect, useMemo, useRef} from 'react';
+import React, {FC, useCallback, useEffect, useMemo, useRef} from 'react';
 import {useAppDispatch, useAppSelector} from "../../utils/hook";
 import {getFavoriteAssets} from "../../store/thunks/assets";
 import {Box, Grid} from "@mui/material";
 import {useStyles} from "./style";
+import AreaChart from "../../components/charts/areaChart/AreaChart";
 
-const Home = () => {
+const Home: FC = (): JSX.Element => {
 
 // Извлекает состояние favoriteAssets из хранилища Redux с помощью хука useAppSelector
     const favoriteAssets: any[] = useAppSelector((store) => store.assets.favoriteAssets);
@@ -46,11 +47,12 @@ const Home = () => {
     const classes = useStyles()
     //----------------
     const renderFavoriteBlock = favoriteAssets.map((item: any) => {
+        console.log('elemet', item)
         const currentPrice = item.data.prices[0]
         const currentCap = item.data.market_caps[0]
 
         return (
-            <Grid item xs={12} sm={6} lg={6}>
+            <Grid item xs={12} sm={6} lg={6} key={item.name}>
                 <Grid container className={classes.topCardItem}>
                     <Grid item xs={12} sm={6} lg={6}>
                         <h3 className={classes.assetName}>{item.name}</h3>
@@ -60,7 +62,7 @@ const Home = () => {
                         </div>
                     </Grid>
                     <Grid item xs={12} sm={6} lg={6}>
-                        <h5>Chart</h5>
+                        <AreaChart data={item.data.prices}/>
                     </Grid>
 
                 </Grid>
