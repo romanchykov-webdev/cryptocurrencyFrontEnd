@@ -3,7 +3,7 @@ import {useLocation, useNavigate} from 'react-router-dom';
 import LoginPage from './login';
 import RegisterPage from './register';
 import {Box} from "@mui/material";
-// import {instance} from "../../utils/exios";
+// import {instance} from "../../utils/axios";
 import {useAppDispatch, useAppSelector} from "../../utils/hook";
 // import {login} from "../../store/slice/auth";
 import {AppErrors} from "../../common/errors";
