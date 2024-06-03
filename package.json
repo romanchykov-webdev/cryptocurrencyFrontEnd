@@ -18,7 +18,9 @@
     "@types/node": "^16.18.96",
     "@types/react": "^18.3.1",
     "@types/react-dom": "^18.3.0",
-    "axios": "^1.6.8",
+    "axios": "^1.7.2",
+    "highcharts": "^11.4.3",
+    "highcharts-react-official": "^3.2.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-hook-form": "^7.51.5",
@@ -53,5 +55,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/highcharts": "^7.0.0"
   }
 }
