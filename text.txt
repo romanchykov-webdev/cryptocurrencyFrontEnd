@@ -49,6 +49,19 @@ CG-1pYzTN8BvrJVcTFsysW78d2D
 npm install highcharts-react-official --legacy-peer-deps
 npm install highcharts --legacy-peer-deps
 
+npm i react-chartjs-2 chart.js
+npm i react-chartjs-2 chart.js --legacy-peer-deps
+
+https://fakerjs.dev/guide/
+npm install @faker-js/faker --save-dev
+npm install @faker-js/faker --save-dev --legacy-peer-deps
+
+
+// библиотека для формат даты
+npm install moment --save
+npm install moment --save --legacy-peer-deps
+
+
 
 
 
