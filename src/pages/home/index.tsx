@@ -6,6 +6,11 @@ import {Box, Grid} from "@mui/material";
 import {useStyles} from "./style";
 import AreaChart from "../../components/charts/areaChart/AreaChart";
 
+//import icons
+import TrendUp from '../../assets/images/chart/trend-up.svg'
+import TrendDown from '../../assets/images/chart/ trend-down.svg'
+//import icons end
+
 const Home: FC = (): JSX.Element => {
 
 // Извлекает состояние favoriteAssets из хранилища Redux с помощью хука useAppSelector
@@ -47,9 +52,18 @@ const Home: FC = (): JSX.Element => {
     const classes = useStyles()
     //----------------
     const renderFavoriteBlock = favoriteAssets.map((item: any) => {
-        console.log('elemet', item)
-        const currentPrice = item.data.prices[0]
-        const currentCap = item.data.market_caps[0]
+        console.log('element', item)
+        const currentPrice = item.singleAsset.map(
+            (el: any) => el.current_price
+        )
+        // const currentCap = item.data.market_caps[0]
+        const currentCap = item.singleAsset.map(
+            (el: any) => el.market_cap
+        )
+        //change price
+        const changePrice = item.singleAsset.map(
+            (el: any) => el.price_change_percentage_24h
+        )
 
         return (
             <Grid item xs={12} sm={6} lg={6} key={item.name}>
@@ -57,12 +71,30 @@ const Home: FC = (): JSX.Element => {
                     <Grid item xs={12} sm={6} lg={6}>
                         <h3 className={classes.assetName}>{item.name}</h3>
                         <div className={classes.itemDetails}>
-                            <h3 className={classes.cardPrice}>${currentPrice[1].toFixed(2)}</h3>
-                            <p className={classes.cardCapitalize}>${currentCap[1].toFixed(0)}</p>
+                            <h3 className={classes.cardPrice}>${currentPrice}</h3>
+                            {/*<p className={classes.cardCapitalize}>${currentCap[1].toFixed(0)}</p>*/}
+                            <Box className={classes.priceTrend}>
+
+                                <span style={{padding:'2px',borderRadius:'4px'}}
+                                    className={
+                                        changePrice > 0
+                                            ? ` ${classes.trendUp}`
+                                            : ` ${classes.trendDown}`
+                                    }
+                                >
+                                     {changePrice > 0
+                                         ? <img style={{transform: 'translateY(2px)'}} src={TrendUp} alt="TrendUp"/>
+                                         : <img style={{transform: 'translateY(2px)'}} src={TrendDown} alt="TrendDown"/>
+                                     }
+                                    {Number(changePrice).toFixed(2)}%
+                                </span>
+
+                            </Box>
+
                         </div>
                     </Grid>
                     <Grid item xs={12} sm={6} lg={6}>
-                        <AreaChart data={item.data.prices}/>
+                        <AreaChart data={item.data}/>
                     </Grid>
 
                 </Grid>
