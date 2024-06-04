@@ -1,11 +1,13 @@
-import React from 'react';
-import {Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow} from "@mui/material";
+import React, {useState} from 'react';
+import {Button, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow} from "@mui/material";
 import Paper from '@mui/material/Paper';
 import {useStyles} from "./style";
 
+import ArrowCircleUpSharpIcon from '@mui/icons-material/ArrowCircleUpSharp';
 
 const TopPrice = (props: any) => {
-    const {assets} = props
+    const {assets, setStateUD,stateUD} = props
+    console.log(stateUD)
     const classes = useStyles()
 
     const [page, setPage] = React.useState(0);
@@ -21,6 +23,13 @@ const TopPrice = (props: any) => {
     };
 
 
+    const handlerUpDownPriceFilter = () => {
+        stateUD==='up'
+        ? setStateUD('down')
+        : setStateUD('up')
+    }
+
+
     return (
         <>
             <TableContainer component={Paper}>
@@ -28,7 +37,20 @@ const TopPrice = (props: any) => {
                     <TableHead>
                         <TableRow>
                             <TableCell>Название</TableCell>
-                            <TableCell align="right">Цена</TableCell>
+                            <TableCell align="right">
+                                Цена
+                                <Button variant="text"
+                                        className={classes.button}
+                                        onClick={handlerUpDownPriceFilter}>
+                                    <ArrowCircleUpSharpIcon
+                                        className={
+                                            stateUD === 'up'
+                                                ? `${classes.rowUpDown} `
+                                                : `${classes.rowUpDown} ${classes.rowDown}`
+
+                                        }/>
+                                </Button>
+                            </TableCell>
                             <TableCell align="right">Изменения (%)</TableCell>
                             <TableCell align="right">Изменения ($)</TableCell>
                         </TableRow>
@@ -37,35 +59,35 @@ const TopPrice = (props: any) => {
                         {assets
                             .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                             .map((element: any) => (
-                            <TableRow
-                                key={element.name}
-                                sx={{'&:last-child td, &:last-child th': {border: 0}}}
-                            >
-                                <TableCell component="th" scope="row">
-                                    {element.name}
-                                </TableCell>
-                                <TableCell align="right">{element.current_price}</TableCell>
-                                <TableCell align="right"
-                                           className={
-                                               element.price_change_24h > 0
-                                                   ? `${classes.priceUp}`
-                                                   : `${classes.priceDown}`
-                                           }
-                                >{element.price_change_24h.toFixed(2)}</TableCell>
-                                <TableCell align="right"
-                                           className={
-                                               element.price_change_percentage_24h > 0
-                                                   ? `${classes.priceUp}`
-                                                   : `${classes.priceDown}`
-                                           }
-                                >{element.price_change_percentage_24h.toFixed(2)}</TableCell>
-                            </TableRow>
-                        ))}
+                                <TableRow
+                                    key={element.name}
+                                    sx={{'&:last-child td, &:last-child th': {border: 0}}}
+                                >
+                                    <TableCell component="th" scope="row">
+                                        {element.name}
+                                    </TableCell>
+                                    <TableCell align="right">{element.current_price}</TableCell>
+                                    <TableCell align="right"
+                                               className={
+                                                   element.price_change_24h > 0
+                                                       ? `${classes.priceUp}`
+                                                       : `${classes.priceDown}`
+                                               }
+                                    >{element.price_change_24h.toFixed(2)}</TableCell>
+                                    <TableCell align="right"
+                                               className={
+                                                   element.price_change_percentage_24h > 0
+                                                       ? `${classes.priceUp}`
+                                                       : `${classes.priceDown}`
+                                               }
+                                    >{element.price_change_percentage_24h.toFixed(2)}</TableCell>
+                                </TableRow>
+                            ))}
                     </TableBody>
                 </Table>
                 {/*//---------*/}
                 <TablePagination
-                    rowsPerPageOptions={[5,10, 25, 100]}
+                    rowsPerPageOptions={[5, 10, 25, 100]}
                     component="div"
                     count={assets.length}
                     rowsPerPage={rowsPerPage}
