@@ -10,6 +10,9 @@ export const useStyles = makeStyles((theme) => {
             flexGrow: 1,
             padding: '32px'
         },
+        areaChart: {
+            marginBottom: 32
+        },
         topCardItem: {
             backgroundColor: `${theme.palette.mode === 'light' ? colors.primary.DEFAULT : colors.primary[600]}`,
             padding: '20px 16px',
@@ -37,19 +40,31 @@ export const useStyles = makeStyles((theme) => {
         },
         priceTrend: {
             // width: '20%',
-            // display: 'flex',
-            // alignItems: 'center',
+            display: 'flex',
+            alignItems: 'center',
 
         },
-        trendUp:{
-            backgroundColor:'#A9FFA7',
-            color:'#037400',
+        trendUp: {
+            backgroundColor: '#A9FFA7',
+            color: '#037400',
 
         },
-        trendDown:{
-            backgroundColor:'#FFA7A7',
-            color:'#740000',
+        trendDown: {
+            backgroundColor: '#FFA7A7',
+            color: '#740000',
+        },
+        lineChartBlock: {
+            backgroundColor: `${
+                theme.palette.mode === 'light'
+                    ? colors.primary.DEFAULT
+                    : colors.primary[600]
+            }`,
+            padding:'20px 16px',
+            minHeight: 270,
+            border:`1px solid ${colors.borderColor}`,
+            borderRadius: 12
         }
+
 
     }
 })
