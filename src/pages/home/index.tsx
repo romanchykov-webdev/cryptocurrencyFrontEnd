@@ -10,10 +10,10 @@ import AreaChart from "../../components/charts/areaChart/AreaChart";
 import TrendUp from '../../assets/images/chart/trend-up.svg'
 import TrendDown from '../../assets/images/chart/trend-down.svg'
 import LineChart from "../../components/charts/lineChart/LineChart";
-import {IChartData} from "../../common/types/assets";
+import {IChartData, ISingleAsset} from "../../common/types/assets";
 //import icons end
 
-const Home: FC = (): JSX.Element => {
+const Home: FC = () => {
 
 // Извлекает состояние favoriteAssets из хранилища Redux с помощью хука useAppSelector
     const favoriteAssets: IChartData[] = useAppSelector((state) => state.assets.favoriteAssets);
@@ -54,19 +54,25 @@ const Home: FC = (): JSX.Element => {
 
     const classes = useStyles()
     //----------------
-    const renderFavoriteBlock = favoriteAssets.map((item: any) => {
+    const renderFavoriteBlock = favoriteAssets.map((item: IChartData) => {
         console.log('element', item)
-        const currentPrice = item.singleAsset.map(
-            (el: any) => el.current_price
-        )
-        // const currentCap = item.data.market_caps[0]
-        // const currentCap = item.singleAsset.map(
-        //     (el: any) => el.market_cap
+        let currentPrice = 0
+        let changePrice = 0
+        item.singleAsset.forEach((el: ISingleAsset) => {
+            currentPrice = el.current_price
+            changePrice = el.price_change_percentage_24h
+        })
+        // const currentPrice = item.singleAsset.map(
+        //     (el: any) => el.current_price
         // )
-        //change price
-        const changePrice = item.singleAsset.map(
-            (el: any) => el.price_change_percentage_24h
-        )
+        // // const currentCap = item.data.market_caps[0]
+        // // const currentCap = item.singleAsset.map(
+        // //     (el: any) => el.market_cap
+        // // )
+        // //change price
+        // const changePrice = item.singleAsset.map(
+        //     (el: any) => el.price_change_percentage_24h
+        // )
 
         return (
             <Grid item xs={12} sm={6} lg={6} key={item.name}>
@@ -78,12 +84,12 @@ const Home: FC = (): JSX.Element => {
                             {/*<p className={classes.cardCapitalize}>${currentCap[1].toFixed(0)}</p>*/}
                             <Box className={classes.priceTrend}>
 
-                                <span style={{padding:'2px',borderRadius:'4px'}}
-                                    className={
-                                        changePrice > 0
-                                            ? ` ${classes.trendUp}`
-                                            : ` ${classes.trendDown}`
-                                    }
+                                <span style={{padding: '2px', borderRadius: '4px'}}
+                                      className={
+                                          changePrice > 0
+                                              ? ` ${classes.trendUp}`
+                                              : ` ${classes.trendDown}`
+                                      }
                                 >
                                      {changePrice > 0
                                          ? <img style={{transform: 'translateY(2px)'}} src={TrendUp} alt="TrendUp"/>
