@@ -8,13 +8,15 @@ import AreaChart from "../../components/charts/areaChart/AreaChart";
 
 //import icons
 import TrendUp from '../../assets/images/chart/trend-up.svg'
-import TrendDown from '../../assets/images/chart/ trend-down.svg'
+import TrendDown from '../../assets/images/chart/trend-down.svg'
+import LineChart from "../../components/charts/lineChart/LineChart";
+import {IChartData} from "../../common/types/assets";
 //import icons end
 
 const Home: FC = (): JSX.Element => {
 
 // Извлекает состояние favoriteAssets из хранилища Redux с помощью хука useAppSelector
-    const favoriteAssets: any[] = useAppSelector((store) => store.assets.favoriteAssets);
+    const favoriteAssets: IChartData[] = useAppSelector((state) => state.assets.favoriteAssets);
     console.log(favoriteAssets)
 // Выводит в консоль текущее значение favoriteAssets для отладки
     console.log('favoriteAssets', favoriteAssets);
@@ -24,6 +26,7 @@ const Home: FC = (): JSX.Element => {
 
 // Инициализирует массив favoriteAssetName с помощью useMemo для предотвращения его пересоздания на каждом рендере
     const favoriteAssetName = useMemo(() => ['bitcoin', 'ethereum'], []);
+    // const favoriteAssetName = useMemo(() => ['bitcoin', 'ethereum','tether','toncoin'], []);
     // const filteredArray=favoriteAssets.filter((value,index,self)=>index===self.findIndex((t)=>t.name===value.name))
 
 // Создает ref объект, который сохраняет своё значение между рендерами, для отслеживания, были ли данные уже загружены
@@ -57,9 +60,9 @@ const Home: FC = (): JSX.Element => {
             (el: any) => el.current_price
         )
         // const currentCap = item.data.market_caps[0]
-        const currentCap = item.singleAsset.map(
-            (el: any) => el.market_cap
-        )
+        // const currentCap = item.singleAsset.map(
+        //     (el: any) => el.market_cap
+        // )
         //change price
         const changePrice = item.singleAsset.map(
             (el: any) => el.price_change_percentage_24h
@@ -94,7 +97,7 @@ const Home: FC = (): JSX.Element => {
                         </div>
                     </Grid>
                     <Grid item xs={12} sm={6} lg={6}>
-                        <AreaChart data={item.data}/>
+                        <AreaChart data={item.price_chart_data}/>
                     </Grid>
 
                 </Grid>
@@ -106,8 +109,17 @@ const Home: FC = (): JSX.Element => {
 
     return (
         <Box className={classes.root}>
-            <Grid container spacing={2}>
+            <Grid container spacing={2} className={classes.areaChart}>
                 {renderFavoriteBlock}
+            </Grid>
+            <Grid container className={classes.lineChartBlock}>
+                <Grid item xs={12} sm={12} lg={12}
+                >
+                    {
+                        favoriteAssets.length && <LineChart data={favoriteAssets}/>
+                    }
+
+                </Grid>
             </Grid>
         </Box>
     );
