@@ -63,7 +63,7 @@ const AreaChart = (props: IAreaChartProps) => {
         ),
         datasets: [
             {
-                // fill: true,
+                fill: true,
                 label: 'Цена',
                 // data: labels.map(() => faker.datatype.number({min: 0, max: 1000})),
                 data: data.map((item: number[]): number => {
