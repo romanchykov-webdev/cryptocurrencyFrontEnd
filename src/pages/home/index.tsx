@@ -1,7 +1,7 @@
 // rsc
 import React, {FC, useCallback, useEffect, useMemo, useRef} from 'react';
 import {useAppDispatch, useAppSelector} from "../../utils/hook";
-import {getFavoriteAssets} from "../../store/thunks/assets";
+import {getFavoriteAssets, getTopPriceData} from "../../store/thunks/assets";
 import {Box, Grid} from "@mui/material";
 import {useStyles} from "./style";
 import AreaChart from "../../components/charts/areaChart/AreaChart";
@@ -11,6 +11,7 @@ import TrendUp from '../../assets/images/chart/trend-up.svg'
 import TrendDown from '../../assets/images/chart/trend-down.svg'
 import LineChart from "../../components/charts/lineChart/LineChart";
 import {IChartData, ISingleAsset} from "../../common/types/assets";
+import TopPrice from "../../components/top-price/TopPrice";
 //import icons end
 
 const Home: FC = () => {
@@ -20,6 +21,15 @@ const Home: FC = () => {
     console.log(favoriteAssets)
 // Выводит в консоль текущее значение favoriteAssets для отладки
     console.log('favoriteAssets', favoriteAssets);
+    //get topPrice array
+    const assetsArray: ISingleAsset[] = useAppSelector(
+        (state) => state.assets.assets
+    )
+    console.log('assetsArray', assetsArray);
+    const filteredAssetArray = assetsArray
+        .slice()
+        .sort((a, b) => b.current_price - a.current_price)
+
 
 // Получает функцию dispatch из Redux с помощью хука useAppDispatch
     const dispatch = useAppDispatch();
@@ -49,8 +59,8 @@ const Home: FC = () => {
 
         // Вызывает fetchData для загрузки данных любимых активов
         fetchData(favoriteAssetName);
-
-    }, [favoriteAssetName, fetchData]); // Указывает зависимости для useEffect: массив favoriteAssetName и функция fetchData
+        dispatch(getTopPriceData())
+    }, [favoriteAssetName, fetchData, dispatch]); // Указывает зависимости для useEffect: массив favoriteAssetName и функция fetchData
 
     const classes = useStyles()
     //----------------
@@ -125,6 +135,13 @@ const Home: FC = () => {
                         favoriteAssets.length && <LineChart data={favoriteAssets}/>
                     }
 
+                </Grid>
+            </Grid>
+            <Grid container className={classes.topPriceRoot}>
+                <Grid item xs={12} sm={12} lg={12}>
+                    {/*<TopPrice assets={assetsArray}/>*/}
+                    {/*<TopPrice assets={filteredAssetArray.slice(0, 6)}/>*/}
+                    <TopPrice assets={filteredAssetArray}/>
                 </Grid>
             </Grid>
         </Box>

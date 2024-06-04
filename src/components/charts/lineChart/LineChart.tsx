@@ -25,12 +25,15 @@ ChartJS.register(
 
 const LineChart: FC<ILineChartProps> = (props: ILineChartProps) => {
     const {data} = props
-    console.log('data', data)
-    console.log('data[0]', data[0])
+    let nameCoin=data[0].name
+    // nameCoin=nameCoin.
+    // console.log('data', data)
+    console.log(typeof nameCoin.toCapitalise)
+    // console.log('data[0]', data[0])
     const options = {
         responsive: true,
         scales: {
-            x: {
+            y: {
                 grid: {
                     display: false,
                 },
@@ -38,7 +41,7 @@ const LineChart: FC<ILineChartProps> = (props: ILineChartProps) => {
         },
         plugins: {
             legend: {
-                display: false
+                position: 'top' as const,
             },
         },
     }
@@ -49,7 +52,7 @@ const LineChart: FC<ILineChartProps> = (props: ILineChartProps) => {
         ),
         datasets: [
             {
-                label:'Цена',
+                label: data[0].name.charAt(0).toUpperCase() + nameCoin.slice(1),
                 data: data[0].price_chart_data.map(
                     (element: any) => element[1],
                 ),
