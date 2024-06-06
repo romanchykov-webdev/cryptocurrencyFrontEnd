@@ -18,7 +18,6 @@ const SearchBarComponent = () => {
     return (
         <Stack spacing={2} sx={{width: '300px'}}>
             <Autocomplete
-                // freeSolo
                 value={selectedItem}
                 onChange={
                 (e: any, value: string | null) => {
