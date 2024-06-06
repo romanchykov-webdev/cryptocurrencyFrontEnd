@@ -10,17 +10,11 @@ import {
     ListItemIcon,
     ListItemText,
     Typography,
-    useTheme, Avatar
+    useTheme,
+    Avatar,
 } from "@mui/material"
 
-//import icons
-// import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
-// import ChevronLeftOutlinedIcon from '@mui/icons-material/ChevronLeftOutlined';
-// import ChevronRightOutlinedIcon from '@mui/icons-material/ChevronRightOutlined';
-// import AutoGraphOutlinedIcon from '@mui/icons-material/AutoGraphOutlined';
-// import MenuBookOutlinedIcon from '@mui/icons-material/MenuBookOutlined';
-// import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
-// import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
+
 import {
     LogoutOutlined,
     ChevronLeftOutlined,
@@ -32,6 +26,8 @@ import {navMenu} from "../../common/moks/navigate"
 //logo
 import Logo from "../../assets/images/sidebar/logo.svg"
 import {ISidebarProps} from "../../common/types/sidebar";
+import ThemeSwitcherComponent from "../theme-switcher/ThemeSwitcherComponent";
+import SearchBarComponent from "../search-bar/SearchBarComponent";
 
 
 const SidebarComponent: FC<ISidebarProps> = (props: ISidebarProps): JSX.Element => {
@@ -113,23 +109,44 @@ const SidebarComponent: FC<ISidebarProps> = (props: ISidebarProps): JSX.Element 
                                 }
                             </FlexBetween>
                         </Box>
+                        {
+                            !isNonMobile && (
+                                <List>
+                                    <ListItem >
+                                        <SearchBarComponent />
+                                    </ListItem>
+                                </List>
+                            )
+                        }
+
                         <List className={classes.navList}>
                             {renderNavMenu}
                         </List>
                     </Box>
                     <Box width='100%'>
-                        <ListItem>
-                            <ListItemButton className={classes.navItem}>
-                                <ListItemIcon>
-                                    <LogoutOutlined/>
-                                </ListItemIcon>
-                                <ListItemText>
-                                    <Typography>
-                                        LogOut
-                                    </Typography>
-                                </ListItemText>
-                            </ListItemButton>
-                        </ListItem>
+                        <List>
+                            {
+                                !isNonMobile && (
+                                    <ListItem>
+                                        <Box padding='5px'>
+                                            <ThemeSwitcherComponent/>
+                                        </Box>
+                                    </ListItem>
+                                )
+                            }
+                            <ListItem>
+                                <ListItemButton className={classes.navItem}>
+                                    <ListItemIcon>
+                                        <LogoutOutlined/>
+                                    </ListItemIcon>
+                                    <ListItemText>
+                                        <Typography>
+                                            LogOut
+                                        </Typography>
+                                    </ListItemText>
+                                </ListItemButton>
+                            </ListItem>
+                        </List>
                     </Box>
                 </Drawer>
             )}
