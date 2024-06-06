@@ -7,7 +7,7 @@ import {useStyles} from "./style"
 
 const LayoutComponent: FC = (): JSX.Element => {
     const location = useLocation()
-    const isNonMobile = useMediaQuery('(min-width:600px)')
+    const isNonMobile = useMediaQuery('(min-width:760px)')
     //burger menu
     const [isOpen, setIsOpen] = useState(false)
 
@@ -38,6 +38,7 @@ const LayoutComponent: FC = (): JSX.Element => {
                             <TopBarComponent
                                 isOpen={isOpen}
                                 setIsOpen={setIsOpen}
+                                isNonMobile={isNonMobile}
                             />
                             <Outlet/>
                         </Box>
