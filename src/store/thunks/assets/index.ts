@@ -1,6 +1,7 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
-import {coinGeckoApi} from "../../../utils/axios";
-const API_KEY='&x_cg_demo_api_key=CG-1pYzTN8BvrJVcTFsysW78d2D'
+import {coinGeckoApi,  instanceAuth} from "../../../utils/axios";
+
+const API_KEY = 'x_cg_demo_api_key=CG-1pYzTN8BvrJVcTFsysW78d2D'
 export const getFavoriteAssets = createAsyncThunk(
     'coins/markets',
     async (data: string, {rejectWithValue}) => {
@@ -11,7 +12,7 @@ export const getFavoriteAssets = createAsyncThunk(
             // console.log(assets)
             // return assets.data
             const singleAsset = await coinGeckoApi.get(
-                `coins/markets?vs_currency=usd&ids=${data}&order=market_cap_desc&per_page=100&page=1&sparkline=false${API_KEY}`,
+                `coins/markets?vs_currency=usd&ids=${data}&order=market_cap_desc&per_page=100&page=1&sparkline=false&${API_KEY}`,
             )
             return {
                 name: data,
@@ -33,10 +34,10 @@ export const getFavoriteAssets = createAsyncThunk(
 
 export const getTopPriceData = createAsyncThunk(
     'coins/markets/topPrice',
-    async (_, { rejectWithValue }) => {
+    async (_, {rejectWithValue}) => {
         try {
             const assets = await coinGeckoApi.get(
-                `coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false${API_KEY}`,
+                `coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false&${API_KEY}`,
             )
             return assets.data
         } catch (error: any) {
@@ -47,4 +48,21 @@ export const getTopPriceData = createAsyncThunk(
             }
         }
     },
+)
+
+//add asset to /watchlist/create
+export const createWatchListRecord = createAsyncThunk(
+    'watchlist/create',
+    async (data: { name: string, assetId: string }, {rejectWithValue}) => {
+        try {
+            return instanceAuth.post('watchlist/create', data)
+
+        } catch (error: any) {
+            if (error.response && error.response.data.message) {
+                return rejectWithValue(error.response.data.message)
+            } else {
+                return rejectWithValue(error.message)
+            }
+        }
+    }
 )

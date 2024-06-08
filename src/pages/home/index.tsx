@@ -18,14 +18,14 @@ const Home: FC = () => {
 
 // Извлекает состояние favoriteAssets из хранилища Redux с помощью хука useAppSelector
     const favoriteAssets: IChartData[] = useAppSelector((state) => state.assets.favoriteAssets);
-    console.log(favoriteAssets)
+    // console.log(favoriteAssets)
 // Выводит в консоль текущее значение favoriteAssets для отладки
-    console.log('favoriteAssets', favoriteAssets);
+//     console.log('favoriteAssets', favoriteAssets);
     //get topPrice array
     const assetsArray: ISingleAsset[] = useAppSelector(
         (state) => state.assets.assets
     )
-    console.log('assetsArray', assetsArray);
+    // console.log('assetsArray', assetsArray);
     let filteredAssetArray=[]
     // filter up to down and revers
     const [stateUD, setStateUD] = useState('up')
@@ -38,7 +38,7 @@ const Home: FC = () => {
             .slice()
             .sort((a, b) => b.current_price - a.current_price)
     }
-    console.log(stateUD)
+    // console.log(stateUD)
     // filter up to down and revers end
 
 // Получает функцию dispatch из Redux с помощью хука useAppDispatch
@@ -75,7 +75,7 @@ const Home: FC = () => {
     const classes = useStyles()
     //----------------
     const renderFavoriteBlock = favoriteAssets.map((item: IChartData) => {
-        console.log('element', item)
+        // console.log('element', item)
         let currentPrice = 0
         let changePrice = 0
         item.singleAsset.forEach((el: ISingleAsset) => {

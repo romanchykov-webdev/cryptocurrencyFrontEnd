@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {FC, useState} from 'react';
 import {Stack, Autocomplete, TextField} from "@mui/material";
 // import {Search} from "@mui/icons-material";
 // import {useStyles} from './style'
@@ -6,7 +6,7 @@ import {ISingleAsset} from "../../common/types/assets";
 import {useAppSelector} from "../../utils/hook";
 import {useNavigate} from "react-router-dom";
 
-const SearchBarComponent = () => {
+const SearchBarComponent:FC = ():JSX.Element => {
     const [selectedItem,setSelectedItem]=useState<string | null>('')
     const navigate = useNavigate()
     //

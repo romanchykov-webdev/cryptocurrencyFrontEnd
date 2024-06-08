@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {Button, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow} from "@mui/material";
 import Paper from '@mui/material/Paper';
 import {useStyles} from "./style";
@@ -7,7 +7,7 @@ import ArrowCircleUpSharpIcon from '@mui/icons-material/ArrowCircleUpSharp';
 
 const TopPrice = (props: any) => {
     const {assets, setStateUD,stateUD} = props
-    console.log(stateUD)
+    // console.log(stateUD)
     const classes = useStyles()
 
     const [page, setPage] = React.useState(0);

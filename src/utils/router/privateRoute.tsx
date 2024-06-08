@@ -5,7 +5,7 @@ const PrivateRoute = () => {
 
     // const auth = false;
     const auth = useAuth()
-    console.log(auth)
+    // console.log(auth)
     return (
         auth ? <Outlet/> : <Navigate to={'/login'}/>
     );

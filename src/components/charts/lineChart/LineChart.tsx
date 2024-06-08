@@ -28,7 +28,7 @@ const LineChart: FC<ILineChartProps> = (props: ILineChartProps) => {
     let nameCoin=data[0].name
     // nameCoin=nameCoin.
     // console.log('data', data)
-    console.log(typeof nameCoin.toCapitalise)
+    // console.log(typeof nameCoin.toCapitalise)
     // console.log('data[0]', data[0])
     const options = {
         responsive: true,
