@@ -17,9 +17,15 @@ export const useStyles = makeStyles({
         marginLeft: 10,
         position: 'relative',
         transition: '1s !important',
-        color:'white'
+        color: 'white'
     },
     rowDown: {
         transform: 'rotate(180deg)'
+    },
+    myBackground:{
+        backgroundColor: 'transparent !important',
+        backgroundImage:'none !important',
+        boxShadow: 'none !important',
     }
+
 })
