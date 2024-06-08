@@ -1,5 +1,5 @@
 // rsc
-import React, {FC, useCallback, useEffect, useMemo, useRef, useState} from 'react';
+import React, {FC, useCallback, useEffect, useMemo, useRef} from 'react';
 import {useAppDispatch, useAppSelector} from "../../utils/hook";
 import {getFavoriteAssets, getTopPriceData} from "../../store/thunks/assets";
 import {Box, Grid} from "@mui/material";
@@ -26,20 +26,7 @@ const Home: FC = () => {
         (state) => state.assets.assets
     )
     // console.log('assetsArray', assetsArray);
-    let filteredAssetArray=[]
-    // filter up to down and revers
-    const [stateUD, setStateUD] = useState('up')
-    if(stateUD==='down'){
-        filteredAssetArray = assetsArray
-            .slice()
-            .sort((a, b) => a.current_price - b.current_price)
-    }else{
-        filteredAssetArray = assetsArray
-            .slice()
-            .sort((a, b) => b.current_price - a.current_price)
-    }
-    // console.log(stateUD)
-    // filter up to down and revers end
+
 
 // Получает функцию dispatch из Redux с помощью хука useAppDispatch
     const dispatch = useAppDispatch();
@@ -151,7 +138,7 @@ const Home: FC = () => {
                 <Grid item xs={12} sm={12} lg={12}>
                     {/*<TopPrice assets={assetsArray}/>*/}
                     {/*<TopPrice assets={filteredAssetArray.slice(0, 6)}/>*/}
-                    <TopPrice assets={filteredAssetArray} stateUD={stateUD} setStateUD={setStateUD}/>
+                    <TopPrice assets={assetsArray} />
                 </Grid>
             </Grid>
         </Box>
