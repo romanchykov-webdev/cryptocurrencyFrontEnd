@@ -6,7 +6,7 @@ import AssetsTableComponent from "../../components/assetsTable/assetsTableCompon
 import {Grid, Typography} from "@mui/material";
 import {useStyles} from "./style";
 
-const WatchListComponent = () => {
+const WatchListPage = () => {
 const classes=useStyles()
     const dispatch = useAppDispatch()
     useEffect(() => {
@@ -45,4 +45,4 @@ const classes=useStyles()
     );
 };
 
-export default WatchListComponent;
+export default WatchListPage;

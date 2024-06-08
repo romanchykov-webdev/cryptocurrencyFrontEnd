@@ -7,8 +7,8 @@ import AuthRootComponents from './pages/auth';
 //import theme mode
 import {ColorModeContext, useMode} from './theme'
 import {CssBaseline, ThemeProvider} from '@mui/material'
-import WatchListComponent from "./pages/watchlist/WatchListComponent";
-import NewsComponent from "./pages/news/NewsComponent";
+import WatchListPage from "./pages/watchlist/WatchListPage";
+import NewsPage from "./pages/news/NewsPage";
 import SettingsComponent from "./pages/settings/SettingsComponent";
 import LayoutComponent from "./components/layout";
 import SingleAssetPage from "./pages/single-asset/SingleAssetPage";
@@ -27,8 +27,8 @@ function App() {
                             {/*solo registration user*/}
                             <Route element={<PrivateRoute/>}>
                                 <Route path="/" element={<Home/>}/>
-                                <Route path="/watchlist" element={<WatchListComponent/>}/>
-                                <Route path="/news" element={<NewsComponent/>}/>
+                                <Route path="/watchlist" element={<WatchListPage/>}/>
+                                <Route path="/news" element={<NewsPage/>}/>
                                 <Route path="/settings" element={<SettingsComponent/>}/>
                                 <Route path={"/single/:id"} element={<SingleAssetPage/>} />
                             </Route>

@@ -1,13 +1,18 @@
-import React, {FC} from 'react';
+import React, {FC, useState} from 'react';
 import {useAppDispatch, useAppSelector} from "../../utils/hook";
 import {ISingleAsset} from "../../common/types/assets";
-import {Avatar, Button, Grid, Typography} from "@mui/material";
+import {AlertColor, Avatar, Button, Grid, Snackbar, Typography} from "@mui/material";
 import FlexBetween from "../../components/flex-between/FlexBetween";
 import {useNavigate, useParams} from "react-router-dom";
 import {useStyles} from "./style";
 import {createWatchListRecord} from "../../store/thunks/assets";
+import {Alert} from "@mui/lab";
+import {set} from "react-hook-form";
 
 const SingleAssetPage: FC = (): JSX.Element => {
+    const [open, setOpen] = useState(false)
+    const [severity, setSeverity] = useState<AlertColor>('success')
+
     const navigate = useNavigate()
     const dispatch = useAppDispatch()
     const classes = useStyles()
@@ -21,13 +26,26 @@ const SingleAssetPage: FC = (): JSX.Element => {
 
     // add tu watchList favorite
     const handleCreateRecord = () => {
-        console.log(asset)
-        if (asset) {
-            const data = {
-                name: asset.name,
-                assetId: asset.id
+        try {
+            console.log(asset)
+            if (asset) {
+                const data = {
+                    name: asset.name,
+                    assetId: asset.id
+                }
+                dispatch(createWatchListRecord(data))
             }
-            dispatch(createWatchListRecord(data))
+            setSeverity('success')
+            setOpen(true)
+            setTimeout(()=>{
+                setOpen(false)
+            },2000)
+        } catch (error: any) {
+            setSeverity('error')
+            setOpen(true)
+            setTimeout(()=>{
+                setOpen(false)
+            },2000)
         }
     }
 
@@ -122,6 +140,15 @@ const SingleAssetPage: FC = (): JSX.Element => {
                         >Добавить в избранное</Button>
 
                     </Grid>
+                    <Snackbar open={open} autoHideDuration={6000}>
+                        <Alert
+                            severity={severity}
+                            sx={{width: '100%'}}
+                        >
+                            Добавлено в избранные!
+                        </Alert>
+                    </Snackbar>
+
                 </Grid>
             )}
         </>
