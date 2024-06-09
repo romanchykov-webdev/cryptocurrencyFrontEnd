@@ -9,7 +9,7 @@ const LayoutComponent: FC = (): JSX.Element => {
     const location = useLocation()
     const isNonMobile = useMediaQuery('(min-width:760px)')
     //burger menu
-    const [isOpen, setIsOpen] = useState(false)
+    const [isOpen, setIsOpen] = useState(true)
 
     const classes = useStyles()
 

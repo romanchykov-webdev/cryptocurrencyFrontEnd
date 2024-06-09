@@ -9,7 +9,7 @@ import {ColorModeContext, useMode} from './theme'
 import {CssBaseline, ThemeProvider} from '@mui/material'
 import WatchListPage from "./pages/watchlist/WatchListPage";
 import NewsPage from "./pages/news/NewsPage";
-import SettingsComponent from "./pages/settings/SettingsComponent";
+import SettingsPage from "./pages/settings/SettingsPage";
 import LayoutComponent from "./components/layout";
 import SingleAssetPage from "./pages/single-asset/SingleAssetPage";
 
@@ -29,7 +29,7 @@ function App() {
                                 <Route path="/" element={<Home/>}/>
                                 <Route path="/watchlist" element={<WatchListPage/>}/>
                                 <Route path="/news" element={<NewsPage/>}/>
-                                <Route path="/settings" element={<SettingsComponent/>}/>
+                                <Route path="/settings" element={<SettingsPage/>}/>
                                 <Route path={"/single/:id"} element={<SingleAssetPage/>} />
                             </Route>
                             {/*all users open routing*/}

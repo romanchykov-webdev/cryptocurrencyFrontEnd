@@ -7,7 +7,6 @@ import {useNavigate, useParams} from "react-router-dom";
 import {useStyles} from "./style";
 import {createWatchListRecord} from "../../store/thunks/assets";
 import {Alert} from "@mui/lab";
-import {set} from "react-hook-form";
 
 const SingleAssetPage: FC = (): JSX.Element => {
     const [open, setOpen] = useState(false)
@@ -20,14 +19,14 @@ const SingleAssetPage: FC = (): JSX.Element => {
     const assetsArray: ISingleAsset[] = useAppSelector(
         (state) => state.assets.assets
     )
-    console.log(id)
+    // console.log(id)
     const asset = assetsArray.find((item) => item.name === (id as string));
-    console.log(asset)
+    // console.log(asset)
 
     // add tu watchList favorite
     const handleCreateRecord = () => {
         try {
-            console.log(asset)
+            // console.log(asset)
             if (asset) {
                 const data = {
                     name: asset.name,

@@ -25,7 +25,7 @@ const classes=useStyles()
             return otherElement.assetId === element.id
         })
     })
-    console.log('filteredArray',filteredArray)
+    // console.log('filteredArray',filteredArray)
     //filter asset end
 
 

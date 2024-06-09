@@ -1,13 +1,14 @@
 import React, {FC} from 'react';
 import {AppBar, Box, Grid, Toolbar, Typography} from "@mui/material";
 
-import { MenuOutlined} from "@mui/icons-material"
+import {MenuOutlined} from "@mui/icons-material"
 
 import {useStyles} from "./style";
 import FlexBetween from "../flex-between/FlexBetween";
 import {ITopBarProps} from "../../common/types/topbar";
 import ThemeSwitcherComponent from "../theme-switcher/ThemeSwitcherComponent";
 import SearchBarComponent from "../search-bar/SearchBarComponent";
+import {useAppSelector} from "../../utils/hook";
 
 
 const TopBarComponent: FC<ITopBarProps> = (props: ITopBarProps): JSX.Element => {
@@ -16,7 +17,11 @@ const TopBarComponent: FC<ITopBarProps> = (props: ITopBarProps): JSX.Element => 
     const classes = useStyles()
 
     //get firstName
-    const firstNameUser = sessionStorage.getItem("firstName")
+    // const firstNameUser = sessionStorage.getItem("firstName")
+
+     const   firstNameUser = useAppSelector(state => state.auth.user.user?.firstName)
+    //
+    console.log(firstNameUser)
     //get firstName end
     return (
         <AppBar className={classes.root} position='static'>
@@ -26,7 +31,7 @@ const TopBarComponent: FC<ITopBarProps> = (props: ITopBarProps): JSX.Element => 
                         <FlexBetween>
                             <MenuOutlined className={classes.menuIcon} onClick={() => setIsOpen(!isOpen)}/>
                             <Typography variant='h3'>
-                                welcome {firstNameUser}
+                                {`welcome ${firstNameUser ? firstNameUser : ''}`}
                             </Typography>
                         </FlexBetween>
                     </Grid>
@@ -35,7 +40,7 @@ const TopBarComponent: FC<ITopBarProps> = (props: ITopBarProps): JSX.Element => 
                         isNonMobile && (
                             <Grid display='flex' justifyContent='flex-end' item sm={9} lg={9}>
                                 <Box borderRight='1px solid #3C3C3C'>
-                                <ThemeSwitcherComponent/>
+                                    <ThemeSwitcherComponent/>
                                 </Box>
                                 <Box marginLeft='28px'>
                                     <SearchBarComponent/>
