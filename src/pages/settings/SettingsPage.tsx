@@ -10,6 +10,7 @@ import SettingsPersonalInfoComponent from "../../components/settings-personal-in
 import {useAppDispatch} from "../../utils/hook";
 import {getPublicUser} from "../../store/thunks/auth";
 import ChangePasswordComponent from "../../components/change-password/ChangePasswordComponent";
+import DeleteUserAccountComponent from "../../components/delete-account/DeleteUserAccountComponent";
 
 
 const SettingsPage = () => {
@@ -57,7 +58,7 @@ const SettingsPage = () => {
                     <ChangePasswordComponent/>
                 </TabPanel>
                 <TabPanel value={value} index={2}>
-                    Item Three
+                    <DeleteUserAccountComponent />
                 </TabPanel>
 
             </Box>

@@ -115,3 +115,19 @@ export const updateUserPassword = createAsyncThunk(
         }
     },
 )
+//thunk for deleteUser
+export const deleteUser = createAsyncThunk(
+    'users/delete-user',
+    async (_, {rejectWithValue}) => {
+        try {
+            return instanceAuth.patch('users')
+
+        } catch (error: any) {
+            if (error.response && error.response.data.message) {
+                return rejectWithValue(error.response.data.message)
+            } else {
+                return rejectWithValue(error.message)
+            }
+        }
+    },
+)

@@ -4,6 +4,8 @@ import {useStyles} from "./style";
 import AppLoadingButton from "../loading-button/loadingButton";
 import {useAppDispatch} from "../../utils/hook";
 import {updateUserPassword} from "../../store/thunks/auth";
+import AlertComponent from "../alert/AlertComponent";
+
 
 const ChangePasswordComponent = () => {
     const [newPassword, setNewPassword] = useState('')
@@ -11,15 +13,40 @@ const ChangePasswordComponent = () => {
     const classes = useStyles();
     const dispatch = useAppDispatch();
 
-    const handleSubmit = (e: any) => {
+    //Alert
+    const [snackbarMessage, setSnackbarMessage] = useState<string | null>(null);
+    const [snackbarSeverity, setSnackbarSeverity] = useState<"success" | "error">("success");
+    const [open, setOpen] = useState<boolean>(false);
+    //Alert
+
+    const handleSubmit = async (e: any) => {
         e.preventDefault();
-        // console.log('handleSubmit')
-        const data = {
-            oldPassword: oldPassword,
-            newPassword: newPassword
+        try {
+            const data = {
+                oldPassword: oldPassword,
+                newPassword: newPassword
+            };
+            await dispatch(updateUserPassword(data)).unwrap(); // Предполагаем, что unwrap используется для обработки отклоненных Thunk
+            //Alert
+            setSnackbarMessage(`Вы изменили свой старый пароль на: ${newPassword}`);
+            setSnackbarSeverity("success");
+            setOpen(true)
+            setTimeout(() => {
+                setOpen(false)
+            }, 2000)
+            //Alert
+        } catch (error) {
+            // console.error('Ошибка при изменении пароля', error);
+            //Alert
+            setSnackbarMessage('Произошла ошибка при изменении пароля. Попробуйте еще раз.');
+            setSnackbarSeverity("error");
+            setOpen(true)
+            setTimeout(() => {
+                setOpen(false)
+            }, 2000)
+            //Alert
         }
-        dispatch(updateUserPassword(data))
-    }
+    };
 
     return (
         <Grid
@@ -59,6 +86,9 @@ const ChangePasswordComponent = () => {
                 </Box>
 
             </Box>
+            {snackbarMessage && (
+                <AlertComponent message={snackbarMessage} severity={snackbarSeverity} isOpen={open}/>
+            )}
         </Grid>
     );
 };
