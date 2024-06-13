@@ -25,7 +25,7 @@ const SettingsPage = () => {
     };
 
     useEffect(() => {
-
+        console.log('log')
         dispatch(getPublicUser())
     }, [dispatch]);
     return (

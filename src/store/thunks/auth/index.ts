@@ -65,11 +65,9 @@ export const RegisterUser = createAsyncThunk(
 //thunk for get-public-user-info
 export const getPublicUser = createAsyncThunk(
     'auth/get-public-user-info',
-    async (_, {rejectWithValue}) => {
+    async (_, { rejectWithValue }) => {
         try {
             const user = await instanceAuth.get('auth/get-public-user-info')
-            // console.log('user',user.data)
-            sessionStorage.setItem("firstName", user.data.firstName)
             return user.data
         } catch (error: any) {
             if (error.response && error.response.data.message) {
@@ -118,10 +116,9 @@ export const updateUserPassword = createAsyncThunk(
 //thunk for deleteUser
 export const deleteUser = createAsyncThunk(
     'users/delete-user',
-    async (_, {rejectWithValue}) => {
+    async (_, { rejectWithValue }) => {
         try {
-            return instanceAuth.patch('users')
-
+            return instanceAuth.delete('users')
         } catch (error: any) {
             if (error.response && error.response.data.message) {
                 return rejectWithValue(error.response.data.message)

@@ -65,6 +65,12 @@ const SidebarComponent: FC<ISidebarProps> = (props: ISidebarProps): JSX.Element 
         )
     })
 
+    function handleLogOut(){
+        console.log('logout')
+        sessionStorage.removeItem('token')
+        sessionStorage.removeItem('firstName')
+        navigate('/login')
+    }
 
     return (
         <Box component='nav'>
@@ -140,7 +146,7 @@ const SidebarComponent: FC<ISidebarProps> = (props: ISidebarProps): JSX.Element 
                                         <LogoutOutlined/>
                                     </ListItemIcon>
                                     <ListItemText>
-                                        <Typography>
+                                        <Typography onClick={handleLogOut}>
                                             LogOut
                                         </Typography>
                                     </ListItemText>
