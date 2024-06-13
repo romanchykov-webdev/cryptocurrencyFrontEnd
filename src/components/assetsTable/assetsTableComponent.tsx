@@ -40,7 +40,7 @@ const AssetsTableComponent = (props: any) => {
             : setStateUD('up')
     }
 
-    console.log(assets)
+    // console.log(assets)
     const classes = useStyles()
     return (
 

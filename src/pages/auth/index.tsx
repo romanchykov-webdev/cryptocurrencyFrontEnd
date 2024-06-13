@@ -45,10 +45,10 @@ const AuthRootComponents: React.FC = (): JSX.Element => {
 
     const loading = useAppSelector((state) => state.auth.isLoading)
 
-    console.log('errors', errors)
+    // console.log('errors', errors)
     const handleSubmitForm = async (data: any) => {
 
-        console.log('data', data)
+        // console.log('data', data)
         if (location.pathname === '/login') {
             try {
                 // const userData = {
@@ -63,12 +63,12 @@ const AuthRootComponents: React.FC = (): JSX.Element => {
                 // console.log(userData)
             } catch (e) {
                 const error = new Error(AppErrors.ErrorPassword);
-                console.log(error);
+                // console.log(error);
                 return error;
                 // return error
             }
         } else if (location.pathname === '/register') {
-            console.log(data)
+            // console.log(data)
             // if (password === repeatPassword) {
             if (data.password === data.confirmPassword) {
                 try {
@@ -89,12 +89,12 @@ const AuthRootComponents: React.FC = (): JSX.Element => {
 
                 } catch (error) {
 
-                    console.log(error)
+                    // console.log(error)
                     return error
                 }
             } else {
                 const error = new Error(AppErrors.PasswordDoNoMatch);
-                console.log(error);
+                // console.log(error);
                 return error;
                 // throw new Error(AppErrors.PasswordDoNoMatch)
             }

@@ -14,7 +14,7 @@ const NewsPage = () => {
     }, [dispatch]);
 
     const {news} = useAppSelector(state => state.news)
-    console.log(news)
+    // console.log(news)
     const renderNewsBlock = news.map((element: any) => (
         <Grid container className={classes.newBlock} key={element.id}>
             <Grid item xs={12} md={3}>
