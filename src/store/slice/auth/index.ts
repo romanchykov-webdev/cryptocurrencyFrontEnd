@@ -1,5 +1,4 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {IAuthState} from "../../../common/types/auth";
 import {getPublicUser, LoginUser, RegisterUser} from "../../thunks/auth";
 
 // const initialState: IAuthState = {
