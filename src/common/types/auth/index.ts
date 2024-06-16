@@ -34,14 +34,17 @@ export interface IPropsRegistration<TFieldValues extends FieldValues = IFormInpu
 
 //description interface state=> user in slice auth
 export interface IAuthState {
-    user: IPublicUser,
+    user: {
+        user: IPublicUser,
+        token: string,
+    },
     isLogged: boolean,
     isLoading: boolean,
 
 }
 
 //description interface user=> in interface=> IAuthState
-interface IPublicUser {
+export interface IPublicUser {
     id: number | null,
     firstName: string,
     userName: string,

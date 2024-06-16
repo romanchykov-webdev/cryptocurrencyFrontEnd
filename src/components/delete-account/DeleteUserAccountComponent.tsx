@@ -9,8 +9,8 @@ const DeleteUserAccountComponent = () => {
     const classes = useStyles();
     const [checked, setChecked] = useState<boolean>(false);
     // console.log(checked)
-    const navigate=useNavigate()
-    const dispatch=useAppDispatch();
+    const navigate = useNavigate()
+    const dispatch = useAppDispatch();
 
 
     function handlerButtonDeleteAccount() {
@@ -47,6 +47,7 @@ const DeleteUserAccountComponent = () => {
                         onClick={handlerButtonDeleteAccount}
                 >Удалить аккаунт</Button>
             </Grid>
+
         </Grid>
     );
 };

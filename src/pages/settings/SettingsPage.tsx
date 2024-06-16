@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import Box from '@mui/material/Box';
 import Tab from '@mui/material/Tab';
 import {Grid, Tabs, useTheme} from "@mui/material";
@@ -7,14 +7,14 @@ import {tabProps} from "../../utils/helpers";
 import {tokens} from "../../theme";
 import {useStyles} from "./style";
 import SettingsPersonalInfoComponent from "../../components/settings-personal-info/SettingsPersonalInfoComponent";
-import {useAppDispatch} from "../../utils/hook";
-import {getPublicUser} from "../../store/thunks/auth";
+// import {useAppDispatch} from "../../utils/hook";
+// import {getPublicUser} from "../../store/thunks/auth";
 import ChangePasswordComponent from "../../components/change-password/ChangePasswordComponent";
 import DeleteUserAccountComponent from "../../components/delete-account/DeleteUserAccountComponent";
 
 
 const SettingsPage = () => {
-    const dispatch = useAppDispatch()
+    // const dispatch = useAppDispatch()
     const [value, setValue] = useState(0);
     const theme = useTheme()
     const colors = tokens(theme.palette.mode)
@@ -24,10 +24,10 @@ const SettingsPage = () => {
         setValue(newValue);
     };
 
-    useEffect(() => {
-        console.log('log')
-        dispatch(getPublicUser())
-    }, [dispatch]);
+    // useEffect(() => {
+    //     // console.log('log')
+    //     dispatch(getPublicUser())
+    // }, [dispatch]);
     return (
         <Grid className={classes.root}>
             <Box className={classes.tabsWrapper}>
@@ -58,7 +58,7 @@ const SettingsPage = () => {
                     <ChangePasswordComponent/>
                 </TabPanel>
                 <TabPanel value={value} index={2}>
-                    <DeleteUserAccountComponent />
+                    <DeleteUserAccountComponent/>
                 </TabPanel>
 
             </Box>

@@ -3,7 +3,8 @@ import axios from "axios";
 const token = sessionStorage.getItem("token");
 
 export const instance = axios.create({
-    baseURL: 'http://localhost:5000',
+    // baseURL: 'http://localhost:5000',
+    baseURL: 'http://52.178.75.133', //api server
     timeout: 1000,
     headers: {'X-Custom-Header': 'foobar'}
 });
@@ -12,7 +13,8 @@ export const newsInstance = axios.create({
     timeout: 1000,
 });
 export const instanceAuth = axios.create({
-    baseURL: 'http://localhost:5000',
+    // baseURL: 'http://localhost:5000',
+    baseURL: 'http://52.178.75.133', //api server
     timeout: 1000,
     headers: {
         'X-Custom-Header': 'foobar',

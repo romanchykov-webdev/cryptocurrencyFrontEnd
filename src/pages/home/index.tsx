@@ -12,6 +12,7 @@ import TrendDown from '../../assets/images/chart/trend-down.svg'
 import LineChart from "../../components/charts/lineChart/LineChart";
 import {IChartData, ISingleAsset} from "../../common/types/assets";
 import TopPrice from "../../components/top-price/TopPrice";
+import {getPublicUser} from "../../store/thunks/auth";
 //import icons end
 
 const Home: FC = () => {
@@ -48,6 +49,7 @@ const Home: FC = () => {
     }, [dispatch]); // Указывает, что зависимостью этой функции является dispatch
 
 // Использует хук useEffect для выполнения побочного эффекта (загрузки данных) при первом рендере компонента
+
     useEffect(() => {
         // Если данные уже были загружены, прекращает выполнение эффекта
         if (fetchDataRef.current) return;
@@ -57,6 +59,7 @@ const Home: FC = () => {
         // Вызывает fetchData для загрузки данных любимых активов
         fetchData(favoriteAssetName);
         dispatch(getTopPriceData())
+
     }, [favoriteAssetName, fetchData, dispatch]); // Указывает зависимости для useEffect: массив favoriteAssetName и функция fetchData
 
     const classes = useStyles()
