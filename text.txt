@@ -83,6 +83,14 @@ test85@test85:~$ sudo systemctl status nginx
         }
 ...
 ///for db.service
+для запуска докера и всего сервиса----
+sudo systemctl start db.service
+для проверки статуса----
+sudo systemctl status db.service
+for stop service----
+sudo systemctl status db.service
+
+
 [Unit]
 Description=PostgreSQL Docker Service
 Requires=docker.service
@@ -101,6 +109,13 @@ WantedBy=multi-user.target
 
 
 //for nest.service------------------- sudo npm run start
+для запуска nest и всего сервиса--
+sudo systemctl start nest.service
+для проверки статуса---
+sudo systemctl status nest.service
+for stop service---
+sudo systemctl status nest.service
+
 [Unit]
 Description=nest daemon service
 
