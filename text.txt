@@ -63,10 +63,18 @@ npm install moment --save --legacy-peer-deps
 
 //conect to server
 $ ssh -i id_ed25519.pub test85@52.178.75.133
+ssh -i id_ed25519.pub test85@52.178.75.133
 
-///
+/// for nginx
+test85@test85:~$ sudo nano /etc/nginx/sites-available/default
+
+--doppo
+test85@test85:~$ sudo systemctl restart nginx
+test85@test85:~$ sudo systemctl status nginx
+
+---------------------
  location / {
-                proxy_pass http://localhost:5000;
+                //proxy_pass http://localhost:5000;
                 proxy_http_version 1.1;
                 proxy_set_header Upgrade $http_upgrade;
                 proxy_set_header Connection 'upgrade';
@@ -74,7 +82,7 @@ $ ssh -i id_ed25519.pub test85@52.178.75.133
                 proxy_cache_bypass $http_upgrade;
         }
 ...
-///
+///for db.service
 [Unit]
 Description=PostgreSQL Docker Service
 Requires=docker.service
@@ -92,7 +100,7 @@ TimeoutStartSec=0
 WantedBy=multi-user.target
 
 
-//for nest
+//for nest.service------------------- sudo npm run start
 [Unit]
 Description=nest daemon service
 
