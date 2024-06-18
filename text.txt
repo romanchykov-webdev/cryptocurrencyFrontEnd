@@ -1,3 +1,7 @@
+запустк на верцел с конфликтом пакетов
+npm install --legacy-peer-deps
+
+
 npx create-react-app frontend --template typescript
 
 //
@@ -114,7 +118,7 @@ sudo systemctl start nest.service
 для проверки статуса---
 sudo systemctl status nest.service
 for stop service---
-sudo systemctl status nest.service
+sudo systemctl stop nest.service
 
 [Unit]
 Description=nest daemon service
