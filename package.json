@@ -60,6 +60,7 @@
   },
   "devDependencies": {
     "@faker-js/faker": "^8.4.1",
-    "@types/highcharts": "^7.0.0"
+    "@types/highcharts": "^7.0.0",
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.0"
   }
 }

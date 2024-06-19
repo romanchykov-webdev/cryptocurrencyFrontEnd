@@ -1,5 +1,5 @@
 запустк на верцел с конфликтом пакетов
-npm install --legacy-peer-deps
+    npm install --legacy-peer-deps
 
 
 npx create-react-app frontend --template typescript

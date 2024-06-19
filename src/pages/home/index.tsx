@@ -12,7 +12,7 @@ import TrendDown from '../../assets/images/chart/trend-down.svg'
 import LineChart from "../../components/charts/lineChart/LineChart";
 import {IChartData, ISingleAsset} from "../../common/types/assets";
 import TopPrice from "../../components/top-price/TopPrice";
-import {getPublicUser} from "../../store/thunks/auth";
+// import {getPublicUser} from "../../store/thunks/auth";
 //import icons end
 
 const Home: FC = () => {
