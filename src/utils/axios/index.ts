@@ -6,7 +6,7 @@ const APY_KEY_COINGECO = 'CG-1pYzTN8BvrJVcTFsysW78d2D'
 const token = sessionStorage.getItem("token");
 
 export const instance = axios.create({
-    baseURL: 'https://vercel.com/serhiis-projects-1baa2745/test',
+    baseURL: 'https://test-alpha-seven-67.vercel.app',
     // baseURL: 'http://localhost:5000',
     // baseURL: 'https://52.178.75.133', //api server
     timeout: 1000,
@@ -20,7 +20,8 @@ export const newsInstance = axios.create({
     },
 });
 export const instanceAuth = axios.create({
-    baseURL: 'https://vercel.com/serhiis-projects-1baa2745/test',
+    baseURL: 'https://test-alpha-seven-67.vercel.app',
+
     // baseURL: 'http://localhost:5000',
     // baseURL: 'https://52.178.75.133', //api server
     timeout: 1000,
