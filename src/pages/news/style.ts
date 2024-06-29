@@ -38,6 +38,14 @@ export const useStyles = makeStyles((theme: Theme) => {
                 backgroundImage: 'none !important'
             },
         },
+        imageBlock: {
+            padding: '0 10px',
+            '& img': {
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+            }
+        },
         newsTitle: {
             marginBottom: 32,
         },

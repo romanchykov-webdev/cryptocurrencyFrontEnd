@@ -43,10 +43,10 @@ const NewsPage = () => {
     const renderNewsBlock = useMemo(() => (
         newsItem.map((element: any) => (
             <Grid container className={classes.newBlock} key={element.id}>
-                <Grid item xs={12} md={3}>
+                <Grid item xs={12} md={4} className={classes.imageBlock}>
                     <img src={element.imageurl} alt={element.title}/>
                 </Grid>
-                <Grid item xs={12} md={9}>
+                <Grid item xs={12} md={8}>
                     <Box className={classes.newsTitle}><Typography variant='h3'>{element.title}</Typography></Box>
                     <Box><Typography variant='body1'>{element.body}</Typography></Box>
                 </Grid>

@@ -1,1 +1,0 @@
-{"version":3,"file":"static/css/main.58a7ee8e.css","mappings":"uGAEA,EAGI,qBAAsB,CAFtB,QAAS,CACT,SAEJ","sources":["index.css"],"sourcesContent":["@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,600;1,500;1,700&display=swap');\n\n* {\n    margin: 0;\n    padding: 0;\n    box-sizing: border-box;\n}\n"],"names":[],"sourceRoot":""}
